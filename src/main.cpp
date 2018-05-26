@@ -3,6 +3,7 @@
 using namespace std;
 
 int main(int argc, char **argv) {
-  startMenu();
+  Menu menu;
+  menu.startMenu();
   return 0;
 }

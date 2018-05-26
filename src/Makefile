@@ -7,7 +7,7 @@ LDIR = ../lib
 
 LIBS = -lm
 
-_DEPS = menu.h
+_DEPS = menu.h config.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
 _OBJ = main.o menu.o
