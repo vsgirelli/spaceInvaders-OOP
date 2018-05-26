@@ -14,3 +14,9 @@ using namespace std;
 #define UP 72
 #define DOWN 80
 #define SPACE 32
+
+
+// GAME
+// quantidade de linhas de aiens
+// quantidade de colunas de aliens
+// etc
