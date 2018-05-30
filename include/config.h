@@ -20,3 +20,4 @@ using namespace std;
 // quantidade de linhas de aiens
 // quantidade de colunas de aliens
 // etc
+#define MAP_TXT "./files/map.txt"

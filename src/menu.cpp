@@ -3,7 +3,8 @@
 using namespace std;
 
 Menu::Menu() {
-  readMenuFile();
+  loadMenu();
+  Game game;
 }
 
 Menu::~Menu() {
@@ -15,21 +16,21 @@ void Menu::startMenu(void) {
 }
 
 void Menu::mainLoop(void) {
-  char keyPressed;
+  char keyPressed = '\0';
   do {
     printMenu();
     keyPressed = cin.get();
   } while(keyPressed != ENTER && keyPressed != ESC);
   
   if (keyPressed == ENTER) {
-    //game.startGame();
+    game.startGame();
   }
   else if(keyPressed == ESC) {
     //cout << "termina jogo" << endl;
   }
 }
 
-void Menu::readMenuFile(void) {
+void Menu::loadMenu(void) {
   ifstream arq;
   arq.open(MENU_TXT);
   
