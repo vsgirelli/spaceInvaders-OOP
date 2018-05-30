@@ -7,10 +7,10 @@ LDIR = ../lib
 
 LIBS = -lm
 
-_DEPS = menu.h config.h game.h
+_DEPS = menu.h config.h game.h spaceship.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = main.o menu.o game.o
+_OBJ = main.o menu.o game.o spaceship.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o:%.cpp $(DEPS)

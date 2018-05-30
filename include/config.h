@@ -7,6 +7,8 @@ using namespace std;
 
 
 // KEYS
+// informar o user de que ele precisa pressionar Q/q para sair
+// pq é difícil capturar o ESC
 #define ESC 27 
 #define ENTER '\n' 
 #define RIGHT 77

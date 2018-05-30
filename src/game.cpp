@@ -4,6 +4,7 @@ using namespace std;
 
 Game::Game() {
   loadMap();
+  loadSpaceships();
 }
 
 Game::~Game() {
@@ -28,14 +29,32 @@ void Game::loadMap() {
 }
 
 void Game::startGame(void) {
-  // vai chamar a mainLoop
-  // que vai printar o jogo e fazer funcionar
-  // mas por enquanto só printa pra testar
-  printGame();
+  mainLoop();
 }
 
 void Game::printGame(void) {
   for (int i = 0; i < MAX_LINES; i++) {
     cout << map[i] << endl;
   }
+}
+
+void Game::mainLoop(void) {
+  char keyPressed = '\0';
+  do {
+    printGame();
+    keyPressed = cin.get();
+  } while(keyPressed != ESC);
+
+  if(keyPressed == ESC) {
+    cout << "termina jogo" << endl;
+  }
+}
+
+void Game::loadSpaceships(void) {
+  // reads the map matrix and finds the positions
+  // of the spaceships in it.
+  // then, with the positions, calls the constructors
+  // for the spaceships providing the position they should
+  // be printed into de map matrix
+
 }
