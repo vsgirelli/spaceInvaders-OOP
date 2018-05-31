@@ -4,7 +4,6 @@
 using namespace std;
 
 Game::Game() {
-  cout << __func__ << endl;
   loadMap();
 }
 
@@ -32,7 +31,14 @@ void Game::loadMap() {
   }
 }
 
+/*
+ * Loads the spaceships, the barriers and the status bar
+ * and calls the mainLoop()
+ */
 void Game::startGame(void) {
+  loadSpaceships();
+  loadBarriers();
+  //loadStatusBar();
   mainLoop();
 }
 
@@ -44,7 +50,6 @@ void Game::printGame(void) {
 
 void Game::mainLoop(void) {
   char keyPressed = '\0';
-  loadSpaceships();
   do {
     printGame();
     keyPressed = cin.get();
@@ -55,6 +60,10 @@ void Game::mainLoop(void) {
   }
 }
 
+/*
+ * For each ocurrence of '@' in the map matrix
+ * is istanciated a Spaceship object.
+ */
 void Game::loadSpaceships(void) {
   for (int i = 0; i < MAX_LINES; i++) {
     for (int j = 0; j < MAX_COLUMNS; j++) {
@@ -63,5 +72,14 @@ void Game::loadSpaceships(void) {
       }
     }
   }
-  cout << "vector size: " << spaceships.size() << endl;
+}
+
+void Game::loadBarriers(void) {
+  for (int i = 0; i < MAX_LINES; i++) {
+    for (int j = 0; j < MAX_COLUMNS; j++) {
+      if (map[i][j] == charBarrier) {
+        barriers.push_back(new Barrier(i));
+      }
+    }
+  }
 }

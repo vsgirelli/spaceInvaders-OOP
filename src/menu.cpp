@@ -3,9 +3,7 @@
 using namespace std;
 
 Menu::Menu() {
-  cout << __func__ << endl;
   loadMenu();
- // Game game;
 }
 
 Menu::~Menu() {
@@ -13,7 +11,6 @@ Menu::~Menu() {
 }
 
 void Menu::startMenu(void) {
-  cout << __func__ << endl;
   mainLoop();
 }
 

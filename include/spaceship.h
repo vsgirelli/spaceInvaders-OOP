@@ -1,6 +1,3 @@
-#include <iostream>
-#include <fstream> // used for FILE operations
-#include <cstdlib> // used for system calls
 #include "config.h"
 
 using namespace std;

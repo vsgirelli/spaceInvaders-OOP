@@ -1,3 +1,9 @@
+#include <iostream>
+#include <fstream> // used for FILE operations
+#include <cstdlib> // used for system calls
+#include <vector>
+#include <string>
+
 using namespace std;
 
 // MENU SETTINGS
@@ -24,3 +30,4 @@ using namespace std;
 // etc
 #define MAP_TXT "./files/map.txt"
 #define charSpaceship '@'
+#define charBarrier '#'

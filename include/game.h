@@ -1,9 +1,5 @@
-#include <iostream>
-#include <fstream> // used for FILE operations
-#include <cstdlib> // used for system calls
-#include <vector>
-#include <string>
 #include "spaceship.h"
+#include "barrier.h"
 #include "config.h"
 
 using namespace std;
@@ -13,6 +9,7 @@ class Game
   private:
     char map[MAX_LINES][MAX_COLUMNS];
     vector<Spaceship*> spaceships;
+    vector<Barrier*> barriers;
 
   public:
     Game();
@@ -24,4 +21,5 @@ class Game
     void printGame(void);
     void mainLoop(void);
     void loadSpaceships(void);
+    void loadBarriers(void);
 };
