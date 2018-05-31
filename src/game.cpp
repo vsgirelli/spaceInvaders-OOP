@@ -64,9 +64,9 @@ void Game::mainLoop(void) {
   do {
     printGame();
     keyPressed = cin.get();
-  } while(keyPressed != ESC);
+  } while(keyPressed != QUIT && keyPressed != quit);
 
-  if(keyPressed == ESC) {
+  if(keyPressed == QUIT || keyPressed == quit) {
     cout << "termina jogo" << endl;
   }
 }

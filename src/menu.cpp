@@ -23,12 +23,12 @@ void Menu::mainLoop(void) {
   do {
     printMenu();
     keyPressed = cin.get();
-  } while(keyPressed != ENTER && keyPressed != ESC);
+  } while(keyPressed != ENTER && keyPressed != QUIT && keyPressed != quit);
   
   if (keyPressed == ENTER) {
     game.startGame();
   }
-  else if(keyPressed == ESC) {
+  else if(keyPressed == QUIT || keyPressed == quit) {
     //cout << "termina jogo" << endl;
   }
 }
