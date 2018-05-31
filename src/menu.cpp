@@ -3,8 +3,9 @@
 using namespace std;
 
 Menu::Menu() {
+  cout << __func__ << endl;
   loadMenu();
-  Game game;
+ // Game game;
 }
 
 Menu::~Menu() {
@@ -12,6 +13,7 @@ Menu::~Menu() {
 }
 
 void Menu::startMenu(void) {
+  cout << __func__ << endl;
   mainLoop();
 }
 
@@ -31,12 +33,15 @@ void Menu::mainLoop(void) {
 }
 
 void Menu::loadMenu(void) {
+  string aux;
   ifstream arq;
   arq.open(MENU_TXT);
   
   if (arq.is_open()) {
     int i = 0;
-    while (getline(arq, menu[i])) {
+    while (getline(arq, aux)) {
+      aux.copy(menu[i], MAX_COLUMNS - 1, 0);
+      menu[i][MAX_COLUMNS - 1] = '\0';
       i++;
     }
     arq.close();
@@ -49,7 +54,7 @@ void Menu::loadMenu(void) {
 
 void Menu::printMenu(void) {
   for (int i = 0; i < MAX_LINES; i++) {
-    cout << menu[i] << endl;
+    puts(menu[i]);
   }
 }
 

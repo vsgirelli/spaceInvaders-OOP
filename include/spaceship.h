@@ -8,7 +8,7 @@ using namespace std;
 class Spaceship
 {
   private:
-    char charDef; // character used to define a Spaceship
+    string charDef; // character used to define a Spaceship
     int position; // position in the map matrix
     int status;   // for dead or alive
 

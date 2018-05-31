@@ -1,10 +1,11 @@
 #include "game.h"
+#include <cstring>
 
 using namespace std;
 
 Game::Game() {
+  cout << __func__ << endl;
   loadMap();
-  loadSpaceships();
 }
 
 Game::~Game() {
@@ -12,12 +13,15 @@ Game::~Game() {
 }
 
 void Game::loadMap() {
+  string aux;
   ifstream arq;
   arq.open(MAP_TXT);
 
   if (arq.is_open()) {
     int i = 0;
-    while (getline(arq, map[i])) {
+    while (getline(arq, aux)) {
+      aux.copy(map[i], MAX_COLUMNS - 1, 0);
+      map[i][MAX_COLUMNS - 1] = '\0';
       i++;
     }
     arq.close();
@@ -35,11 +39,12 @@ void Game::startGame(void) {
 void Game::printGame(void) {
   for (int i = 0; i < MAX_LINES; i++) {
     cout << map[i] << endl;
-  }
+    }
 }
 
 void Game::mainLoop(void) {
   char keyPressed = '\0';
+  loadSpaceships();
   do {
     printGame();
     keyPressed = cin.get();
@@ -51,10 +56,12 @@ void Game::mainLoop(void) {
 }
 
 void Game::loadSpaceships(void) {
-  // reads the map matrix and finds the positions
-  // of the spaceships in it.
-  // then, with the positions, calls the constructors
-  // for the spaceships providing the position they should
-  // be printed into de map matrix
-
+  for (int i = 0; i < MAX_LINES; i++) {
+    for (int j = 0; j < MAX_COLUMNS; j++) {
+      if (map[i][j] == charSpaceship) {
+        spaceships.push_back(new Spaceship(i));
+      }
+    }
+  }
+  cout << "vector size: " << spaceships.size() << endl;
 }

@@ -13,7 +13,7 @@ class Menu
     //http://www.cplusplus.com/reference/chrono/steady_clock/
     //http://www.cplusplus.com/reference/chrono/
     //https://stackoverflow.com/questions/409348/iteration-over-stdvector-unsigned-vs-signed-index-variable
-    string menu[MAX_LINES];
+    char menu[MAX_LINES][MAX_COLUMNS];
 
   public:
     Menu();

@@ -1,8 +1,8 @@
 using namespace std;
 
 // MENU SETTINGS
-#define MAX_COLUMNS 60
-#define MAX_LINES 30
+#define MAX_COLUMNS 61
+#define MAX_LINES 31
 #define MENU_TXT "./files/menu.txt"
 
 
@@ -23,3 +23,4 @@ using namespace std;
 // quantidade de colunas de aliens
 // etc
 #define MAP_TXT "./files/map.txt"
+#define charSpaceship '@'

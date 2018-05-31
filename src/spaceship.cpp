@@ -11,7 +11,7 @@ Spaceship::~Spaceship() {
 }
 
 Spaceship::Spaceship(int pos) {
-  charDef = '@';
+  charDef = charSpaceship;
   position = pos;
   status = 1;
 }
