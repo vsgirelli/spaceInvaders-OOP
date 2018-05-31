@@ -10,10 +10,7 @@ class Menu
 {
   private:
     Game game;
-    //http://www.cplusplus.com/reference/chrono/steady_clock/
-    //http://www.cplusplus.com/reference/chrono/
-    //https://stackoverflow.com/questions/409348/iteration-over-stdvector-unsigned-vs-signed-index-variable
-    char menu[MAX_LINES][MAX_COLUMNS];
+    char menu[MAX_LINES][MAX_COLUMNS];  // menu matrix read from a .txt
 
   public:
     Menu();

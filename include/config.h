@@ -6,10 +6,11 @@
 
 using namespace std;
 
-// MENU SETTINGS
+// FILES SETTINGS
 #define MAX_COLUMNS 61
 #define MAX_LINES 31
 #define MENU_TXT "./files/menu.txt"
+#define MAP_TXT "./files/map.txt"
 
 
 // KEYS
@@ -25,9 +26,5 @@ using namespace std;
 
 
 // GAME
-// quantidade de linhas de aiens
-// quantidade de colunas de aliens
-// etc
-#define MAP_TXT "./files/map.txt"
 #define charSpaceship '@'
 #define charBarrier '#'

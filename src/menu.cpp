@@ -14,6 +14,10 @@ void Menu::startMenu(void) {
   mainLoop();
 }
 
+/*
+ * Loop that keeps executing until the user presses
+ * a specific key and then calls the handler
+ */
 void Menu::mainLoop(void) {
   char keyPressed = '\0';
   do {
@@ -29,7 +33,15 @@ void Menu::mainLoop(void) {
   }
 }
 
+/*
+ * Reads a .txt with the menu
+ */
 void Menu::loadMenu(void) {
+  /*
+   * Manipulating files is easier with strings,
+   * so we copy an entire line to a string and then
+   * we copy the string to a line of the menu matrix
+   */
   string aux;
   ifstream arq;
   arq.open(MENU_TXT);
