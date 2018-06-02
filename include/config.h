@@ -3,6 +3,9 @@
 #include <cstdlib> // used for system calls
 #include <vector>
 #include <string>
+#include <cstring>
+#include <ctime>
+#include <unistd.h>
 
 using namespace std;
 

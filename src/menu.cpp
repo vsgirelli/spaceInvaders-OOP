@@ -45,7 +45,7 @@ void Menu::loadMenu(void) {
   string aux;
   ifstream arq;
   arq.open(MENU_TXT);
-  
+
   if (arq.is_open()) {
     int i = 0;
     while (getline(arq, aux)) {

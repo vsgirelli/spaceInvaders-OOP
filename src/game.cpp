@@ -1,5 +1,4 @@
 #include "game.h"
-#include <cstring>
 
 using namespace std;
 
@@ -44,12 +43,14 @@ void Game::loadMap() {
  * the barriers and the status bar and calls the mainLoop()
  */
 void Game::startGame(void) {
+  clearScreen();
   loadSpaceships();
   loadBarriers();
   //loadStatusBar();
   mainLoop();
 }
 
+// vai ser passada pra a classe display
 void Game::printGame(void) {
   for (int i = 0; i < MAX_LINES; i++) {
     cout << map[i] << endl;
@@ -57,24 +58,9 @@ void Game::printGame(void) {
 }
 
 /*
- * TODO atualizar descrição da mainLoop
- */
-void Game::mainLoop(void) {
-  char keyPressed = '\0';
-  do {
-    printGame();
-    keyPressed = cin.get();
-  } while(keyPressed != QUIT && keyPressed != quit);
-
-  if(keyPressed == QUIT || keyPressed == quit) {
-    cout << "termina jogo" << endl;
-  }
-}
-
-/*
- * For each occurrence of '@' in the map matrix
- * is istantiated a Spaceship object.
- */
+* For each occurrence of '@' in the map matrix
+* is istantiated a Spaceship object.
+*/
 void Game::loadSpaceships(void) {
   for (int i = 0; i < MAX_LINES; i++) {
     for (int j = 0; j < MAX_COLUMNS; j++) {
@@ -86,9 +72,9 @@ void Game::loadSpaceships(void) {
 }
 
 /*
- * For each occurrence of '#' in the map matrix
- * is istantiated a Barrier object.
- */
+* For each occurrence of '#' in the map matrix
+* is istantiated a Barrier object.
+*/
 void Game::loadBarriers(void) {
   for (int i = 0; i < MAX_LINES; i++) {
     for (int j = 0; j < MAX_COLUMNS; j++) {
@@ -97,4 +83,63 @@ void Game::loadBarriers(void) {
       }
     }
   }
+}
+
+/*
+ * TODO atualizar descrição da mainLoop
+ */
+void Game::mainLoop(void) {
+  char keyPressed = '\0';
+  clock_t endFrameTime;
+
+  do {
+    //keyPressed = cin.get(); // used for user movements and game options
+    updatePositions();
+    clearScreen();
+    printGame(); // depois vai ser chamada como display.print()
+    endFrameTime = clock(); // gets the current time
+    waitClock(endFrameTime);
+  } while(keyPressed != QUIT && keyPressed != quit);
+
+  if(keyPressed == QUIT || keyPressed == quit) {
+    cout << "termina jogo" << endl;
+  }
+}
+
+void Game::clearScreen()
+{
+  /*
+   * A string of special characters
+   * that translate to clear the screen command
+   * and works for both Windows and Linux
+   */
+  cout << "\033[2J\033[1;1H";
+}
+
+/*
+ *
+ *
+ */
+int Game::updatePositions(){
+
+  //checkBulletColisions();
+
+  return 0;
+}
+
+/*
+ * Executes until the clock reaches 600 milissenconds
+ * and then returns the control to mainLoop()
+ */
+void Game::waitClock(clock_t endFrameTime){
+  clock_t actualTime, deltaTime = 0;
+  do {
+    actualTime = clock();
+    deltaTime = actualTime - endFrameTime;
+  } while(clockToMilliseconds(deltaTime) < 600.0);
+}
+
+double Game::clockToMilliseconds(clock_t ticks){
+    // units/(units/time) => time (seconds) * 1000 = milliseconds
+    return (ticks/(double)CLOCKS_PER_SEC)*1000.0;
 }

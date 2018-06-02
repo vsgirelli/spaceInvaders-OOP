@@ -5,7 +5,7 @@ CFLAGS = -I$(IDIR) -Wall
 ODIR = obj
 LDIR = ../lib
 
-LIBS = -lm
+LIBS = -lm -lcurses
 
 _DEPS = menu.h config.h game.h spaceship.h barrier.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
