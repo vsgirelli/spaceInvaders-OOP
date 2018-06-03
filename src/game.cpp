@@ -7,7 +7,12 @@ Game::Game() {
 }
 
 Game::~Game() {
-
+  // deve deletar os objetos criados nos vectors
+  // então quando o destrutor é chamado, deve-se
+  // garantir que os detrutores de tudo tbm são chamados
+  // isso faz com que o tipo de relação (pro UML)
+  // deva ser uma composição
+  // fazer as destroy pra tudo que foi load
 }
 
 /*
@@ -94,6 +99,8 @@ void Game::mainLoop(void) {
 
   do {
     //keyPressed = cin.get(); // used for user movements and game options
+    // tem que ser como callback
+    // senão fica travado esperando user apertar tecla
     updatePositions();
     clearScreen();
     printGame(); // depois vai ser chamada como display.print()
