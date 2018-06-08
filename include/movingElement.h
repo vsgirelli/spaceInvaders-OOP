@@ -1,4 +1,7 @@
 #include "config.h"
+#include "element.h"
+
+#pragma once 
 
 using namespace std;
 
@@ -15,8 +18,9 @@ class MovingElement : public Element
   public:
     MovingElement();
     ~MovingElement();
+    MovingElement(char def, int posx, int posy);
     // A class is abstract if it has at least one pure virtual function,
     // which is a function that is only declared
     // and must be overridden by any concrete derived class.
-    void move(void) = 0;
+    virtual void move(void) = 0;
 };

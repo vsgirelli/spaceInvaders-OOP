@@ -11,3 +11,9 @@ MovingElement::MovingElement()
 MovingElement::~MovingElement() {
 
 }
+
+MovingElement::MovingElement(char def, int posx, int posy)
+  : Element(def, posx, posy)
+{
+
+}

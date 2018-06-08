@@ -3,7 +3,7 @@
 using namespace std;
 
 Shot::Shot()
-  : Element()
+  : MovingElement()
 {
 
 }
@@ -14,15 +14,15 @@ Shot::~Shot()
 }
 
 Shot::Shot(int posx, int posy, int dir)
-  : Element(charShot, posx, posy)
+  : MovingElement(charShot, posx, posy)
 {
-  this.direction = dir;
+  direction = dir;
 }
 
 // Once Shot is a concrete class that inherit from abstract classes,
 // Shot must implement the pure virtual functions declared in the base classes.
 char Shot::getClass(void) {
-  return this.charDef;
+  return getCharDef();
 }
 
 void Shot::move(void) {

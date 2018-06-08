@@ -1,5 +1,7 @@
 #include "config.h"
 
+#pragma once
+
 using namespace std;
 
 // Abstract class inherited by all the interactive objects in the game.
@@ -15,8 +17,7 @@ class Element
     ~Element();
     Element(char def, int posx, int posy);
     bool isColliding(Element *element);
-    //char getCharDef(void);
-    //void setCharDef(char def);
+    char getCharDef(void);
     pair<int, int> getPosition(void);
     void setPosition(int posx, int posy);
 

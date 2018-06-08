@@ -3,7 +3,7 @@
 
 using namespace std;
 
-class UserSpaceship: public Spaceship 
+class UserSpaceship: public Spaceship
 {
   public:
     UserSpaceship();

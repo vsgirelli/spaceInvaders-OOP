@@ -44,7 +44,7 @@ void Game::loadMap() {
 }
 
 /*
- * Prepares the game by loading the spaceships,
+ * Prepares the game by loading the enemies spaceships,
  * the barriers and the status bar and calls the mainLoop()
  */
 void Game::startGame(void) {
@@ -69,8 +69,8 @@ void Game::printGame(void) {
 void Game::loadSpaceships(void) {
   for (int i = 0; i < MAX_LINES; i++) {
     for (int j = 0; j < MAX_COLUMNS; j++) {
-      if (map[i][j] == charSpaceship) {
-        spaceships.push_back(new Spaceship(i));
+      if (map[i][j] == charEnemy) {
+        enemies.push_back(new EnemySpaceship(i, j, MOVE_RIGHT));
       }
     }
   }
@@ -84,7 +84,7 @@ void Game::loadBarriers(void) {
   for (int i = 0; i < MAX_LINES; i++) {
     for (int j = 0; j < MAX_COLUMNS; j++) {
       if (map[i][j] == charBarrier) {
-        barriers.push_back(new Barrier(i));
+        barriers.push_back(new Barrier(i, j));
       }
     }
   }
@@ -105,16 +105,9 @@ void Game::mainLoop(void) {
     clearScreen();
     printGame(); // depois vai ser chamada como display.print()
     endFrameTime = clock(); // gets the current time
-    
-    
 
-    user.move();
-    for(int i = 0; i < barriers.size(); i++) {
-      spaceships.move();
-    }
 
     // Faz o mesmo com as outras listas
-    
     waitClock(endFrameTime);
   } while(keyPressed != QUIT && keyPressed != quit);
 

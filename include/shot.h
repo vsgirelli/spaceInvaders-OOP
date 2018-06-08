@@ -1,5 +1,7 @@
 #include "config.h"
-#include "movingElements.h"
+#include "movingElement.h"
+
+#pragma once
 
 using namespace std;
 

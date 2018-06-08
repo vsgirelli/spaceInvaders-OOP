@@ -3,7 +3,7 @@
 using namespace std;
 
 UserSpaceship::UserSpaceship()
-  : Element()
+  : Spaceship()
 {
 
 }
@@ -14,7 +14,7 @@ UserSpaceship::~UserSpaceship()
 }
 
 UserSpaceship::UserSpaceship(int posx, int posy)
-  : Element(charUser, posx, posy)
+  : Spaceship(charUser, posx, posy)
 {
 
 }
@@ -22,7 +22,7 @@ UserSpaceship::UserSpaceship(int posx, int posy)
 // Once UserSpaceship is a concrete class that inherit from abstract classes,
 // UserSpaceship  must implement the pure virtual functions declared in the base classes.
 char UserSpaceship::getClass(void) {
-  return this.charDef;
+  return getCharDef();
 }
 
 void UserSpaceship::move(void) {

@@ -1,4 +1,6 @@
-#include "spaceship.h"
+#include "enemySpaceship.h"
+#include "userSpaceship.h"
+#include "shot.h"
 #include "barrier.h"
 #include "config.h"
 
@@ -8,10 +10,11 @@ class Game
 {
   private:
     char map[MAX_LINES][MAX_COLUMNS];   // map matrix read from a .txt
-    vector<EnemySpaceship*> spaceships; // spaceships from the map
+    vector<EnemySpaceship*> enemies;    // enemies spaceships from the map
     vector<Barrier*> barriers;          // barriers from the map
     //StatusBar statusBar;              // status bar of the game
-    //UserSpaceship user;               // user spaceship
+    UserSpaceship user;                 // user spaceship
+
 
   public:
     Game();
