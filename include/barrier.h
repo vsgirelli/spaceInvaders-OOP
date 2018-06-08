@@ -8,4 +8,5 @@ class Barrier : public Element
     Barrier();
     ~Barrier();
     Barrier(int posx, int posy);
+    char getClass(void);
 };

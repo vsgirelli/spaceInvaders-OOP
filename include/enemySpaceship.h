@@ -3,7 +3,7 @@
 
 using namespace std;
 
-class EnemySpaceship : public movingElements
+class EnemySpaceship : public Spaceship 
 {
   private:
     int direction;  // Movimentation direction
@@ -11,5 +11,8 @@ class EnemySpaceship : public movingElements
   public:
     EnemySpaceship();
     ~EnemySpaceship();
-    EnemySpaceship(char def, int posx, int posy, bool stat);
+    EnemySpaceship(int posx, int posy, int dir);
+    char getClass(void);
+    void move(void);
+    void shoot(void);
 };

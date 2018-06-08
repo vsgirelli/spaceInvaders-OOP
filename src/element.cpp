@@ -19,7 +19,7 @@ Element::Element(char def, int posx, int posy) {
 bool Element::isColliding(Element *element) {
 
 }
-
+/*
 char Element::getCharDef(void) {
   return this.charDef;
 }
@@ -27,7 +27,7 @@ char Element::getCharDef(void) {
 void Element::setCharDef(char def) {
   this.charDef = def;
 }
-
+*/
 pair<int, int> Element::getPosition(void) {
   return make_pair(this.xpos, this.ypos);
 }

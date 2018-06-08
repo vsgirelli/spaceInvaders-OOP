@@ -3,10 +3,13 @@
 
 using namespace std;
 
-class UserSpaceship: public MovingElement
+class UserSpaceship: public Spaceship 
 {
   public:
     UserSpaceship();
     ~UserSpaceship();
-    UserSpaceship(char def, int posx, int posy, bool stat);
+    UserSpaceship(int posx, int posy);
+    char getClass(void);
+    void move(void);
+    void shoot(void);
 };

@@ -11,5 +11,7 @@ class Shot: public MovingElement
   public:
     Shot();
     ~Shot();
-    Shot(char def, int posx, int posy, bool stat);
+    Shot(int posx, int posy, int dir);
+    char getClass(void);
+    void move(void);
 };

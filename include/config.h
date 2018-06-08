@@ -33,8 +33,10 @@ using namespace std;
 
 
 // GAME
-#define charSpaceship '@'
+#define charEnemy '@'
 #define charBarrier '#'
+#define charUser '&'
+#define charShot '|'
 #define MOVE_RIGHT 1  
 #define MOVE_LEFT 2
 #define MOVE_UPWARD 3 

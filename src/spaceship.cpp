@@ -3,7 +3,7 @@
 using namespace std;
 
 Spaceship::Spaceship()
-  : Characteristics(), Behaviors()
+  : MovingElement()
 {
 
 }
@@ -12,8 +12,6 @@ Spaceship::~Spaceship() {
 
 }
 
-Spaceship::Spaceship(int pos) {
-  charDef = charSpaceship;
-  position = pos;
-  status = 1;
+void Spaceship::moveShots(vector<Shot*> shots) {
+
 }
