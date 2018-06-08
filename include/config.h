@@ -6,6 +6,8 @@
 #include <cstring>
 #include <ctime>
 #include <unistd.h>
+#include <utility>
+#include <functional>
 
 using namespace std;
 
@@ -33,3 +35,7 @@ using namespace std;
 // GAME
 #define charSpaceship '@'
 #define charBarrier '#'
+#define MOVE_RIGHT 1  
+#define MOVE_LEFT 2
+#define MOVE_UPWARD 3 
+#define MOVW_DOWNWARD 4

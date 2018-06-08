@@ -2,7 +2,9 @@
 
 using namespace std;
 
-Barrier::Barrier() {
+Barrier::Barrier()
+  : Element()
+{
 
 }
 
@@ -10,8 +12,12 @@ Barrier::~Barrier() {
 
 }
 
-Barrier::Barrier(int pos) {
-  charDef = charBarrier;
-  position = pos;
-  status = 1;
+Barrier::Barrier(int posx, int posy)
+  : Element(charBarrier, posx, posy)
+{
+
+}
+
+char Barrier::getClass(void) {
+  return this.charDef;
 }

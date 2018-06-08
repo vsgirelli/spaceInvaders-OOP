@@ -2,7 +2,9 @@
 
 using namespace std;
 
-Spaceship::Spaceship() {
+Spaceship::Spaceship()
+  : Characteristics(), Behaviors()
+{
 
 }
 

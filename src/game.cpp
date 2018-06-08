@@ -105,6 +105,16 @@ void Game::mainLoop(void) {
     clearScreen();
     printGame(); // depois vai ser chamada como display.print()
     endFrameTime = clock(); // gets the current time
+    
+    
+
+    user.move();
+    for(int i = 0; i < barriers.size(); i++) {
+      spaceships.move();
+    }
+
+    // Faz o mesmo com as outras listas
+    
     waitClock(endFrameTime);
   } while(keyPressed != QUIT && keyPressed != quit);
 

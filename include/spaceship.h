@@ -1,16 +1,20 @@
 #include "config.h"
+#include "movingElements.h"
 
 using namespace std;
 
-class Spaceship
+// Abstract class inherited by the two types of spaceships:
+// enemy spaceship and user spaceship
+class Spaceship : public MovingElement
 {
-  private:
-    char charDef;   // character used to define a Spaceship in the map
-    int position;   // position of the object in the map matrix
-    bool status;    // Spaceship alive || Spaceship dead
-
   public:
     Spaceship();
     ~Spaceship();
-    Spaceship(int pos);
+    Spaceship(char def, int posx, int posy, bool stat);
+
+    // A class is abstract if it has at least one pure virtual function,
+    // which is a function that is only declared
+    // and must be overridden by any concrete derived class.
+    virtual void shot(void) = 0;
+    void moveShots(void);
 };
