@@ -16,7 +16,7 @@ using namespace std;
 
 // FILES SETTINGS
 #define MAX_COLUMNS 61
-#define MAX_LINES 31
+#define MAX_LINES 30
 #define MENU_TXT "./files/menu.txt"
 #define MAP_TXT "./files/map.txt"
 
