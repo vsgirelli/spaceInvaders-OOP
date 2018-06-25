@@ -22,5 +22,5 @@ class MovingElement : public Element
     // A class is abstract if it has at least one pure virtual function,
     // which is a function that is only declared
     // and must be overridden by any concrete derived class.
-    virtual void move(void) = 0;
+    virtual void move(int direction) = 0;
 };

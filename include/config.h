@@ -8,6 +8,9 @@
 #include <unistd.h>
 #include <utility>
 #include <functional>
+#include <termios.h>
+#include <unistd.h>
+#include <fcntl.h>
 
 using namespace std;
 
@@ -37,7 +40,7 @@ using namespace std;
 #define charBarrier '#'
 #define charUser '&'
 #define charShot '|'
-#define MOVE_RIGHT 1  
+#define MOVE_RIGHT 1
 #define MOVE_LEFT 2
-#define MOVE_UPWARD 3 
+#define MOVE_UPWARD 3
 #define MOVW_DOWNWARD 4

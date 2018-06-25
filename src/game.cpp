@@ -22,7 +22,7 @@ void Game::loadMap() {
   /*
    * Manipulating files is easier with strings,
    * so we copy an entire line to a string and then
-   * we copy the string to a line of the map matrix
+   * we copy the string to a line of the auxMap matrix
    */
   string aux;
   ifstream arq;
@@ -31,8 +31,8 @@ void Game::loadMap() {
   if (arq.is_open()) {
     int i = 0;
     while (getline(arq, aux)) {
-      aux.copy(map[i], MAX_COLUMNS - 1, 0);
-      map[i][MAX_COLUMNS - 1] = '\0';
+      aux.copy(auxMap[i], MAX_COLUMNS - 1, 0);
+      auxMap[i][MAX_COLUMNS - 1] = '\0';
       i++;
     }
     arq.close();
@@ -48,18 +48,23 @@ void Game::loadMap() {
  * the barriers and the status bar and calls the mainLoop()
  */
 void Game::startGame(void) {
-  clearScreen();
+  clearMap();
   loadSpaceships();
   loadBarriers();
   //loadStatusBar();
+  loadPlayer();
   mainLoop();
+}
+
+void Game::loadPlayer(void) {
+  user = new UserSpaceship(MAX_COLUMNS / 2, MAX_LINES - 1);
 }
 
 // vai ser passada pra a classe display
 void Game::printGame(void) {
   for (int i = 0; i < MAX_LINES; i++) {
     cout << map[i] << endl;
-    }
+  }
 }
 
 /*
@@ -71,6 +76,8 @@ void Game::loadSpaceships(void) {
     for (int j = 0; j < MAX_COLUMNS; j++) {
       if (map[i][j] == charEnemy) {
         enemies.push_back(new EnemySpaceship(i, j, MOVE_RIGHT));
+        //FIXME
+        map[i][j] = ' ';
       }
     }
   }
@@ -85,6 +92,8 @@ void Game::loadBarriers(void) {
     for (int j = 0; j < MAX_COLUMNS; j++) {
       if (map[i][j] == charBarrier) {
         barriers.push_back(new Barrier(i, j));
+        //FIXME
+        map[i][j] = ' ';
       }
     }
   }
@@ -98,17 +107,18 @@ void Game::mainLoop(void) {
   clock_t endFrameTime;
 
   do {
-    //keyPressed = cin.get(); // used for user movements and game options
-    // tem que ser como callback
-    // senão fica travado esperando user apertar tecla
-    updatePositions();
-    clearScreen();
-    printGame(); // depois vai ser chamada como display.print()
-    endFrameTime = clock(); // gets the current time
+    while(!kbhit()) {
+      clearMap();
+      updatePositions();
+      printGame();
+      endFrameTime = clock(); // gets the current time
 
+      waitClock(endFrameTime);
+    }
+    keyPressed = getchar();
+    cout << "key: " << keyPressed << endl;
+    updateUserPosition(RIGHT);
 
-    // Faz o mesmo com as outras listas
-    waitClock(endFrameTime);
   } while(keyPressed != QUIT && keyPressed != quit);
 
   if(keyPressed == QUIT || keyPressed == quit) {
@@ -116,40 +126,27 @@ void Game::mainLoop(void) {
   }
 }
 
-void Game::clearScreen()
-{
-  /*
-   * A string of special characters
-   * that translate to clear the screen command
-   * and works for both Windows and Linux
-   */
-  cout << "\033[2J\033[1;1H";
+void Game::clearMap(void) {
+  clearScreen();
+  resetMap();
+}
+
+void Game::resetMap(void) {
+  for (int i = 0; i < MAX_LINES; i++) {
+        for(int j = 0; j < MAX_COLUMNS; j++)
+            map[i][j] = auxMap[i][j];
+    }
 }
 
 /*
  *
  *
  */
-int Game::updatePositions(){
+void Game::updateUserPosition(int direction) {
+  user->move(direction);
+}
 
-  //checkBulletColisions();
+int Game::updatePositions(void) {
 
   return 0;
-}
-
-/*
- * Executes until the clock reaches 600 milissenconds
- * and then returns the control to mainLoop()
- */
-void Game::waitClock(clock_t endFrameTime){
-  clock_t actualTime, deltaTime = 0;
-  do {
-    actualTime = clock();
-    deltaTime = actualTime - endFrameTime;
-  } while(clockToMilliseconds(deltaTime) < 600.0);
-}
-
-double Game::clockToMilliseconds(clock_t ticks){
-    // units/(units/time) => time (seconds) * 1000 = milliseconds
-    return (ticks/(double)CLOCKS_PER_SEC)*1000.0;
 }

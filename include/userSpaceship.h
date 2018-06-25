@@ -10,6 +10,6 @@ class UserSpaceship: public Spaceship
     ~UserSpaceship();
     UserSpaceship(int posx, int posy);
     char getClass(void);
-    void move(void);
+    void move(int direction);
     void shoot(void);
 };

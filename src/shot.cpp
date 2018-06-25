@@ -22,9 +22,9 @@ Shot::Shot(int posx, int posy, int dir)
 // Once Shot is a concrete class that inherit from abstract classes,
 // Shot must implement the pure virtual functions declared in the base classes.
 char Shot::getClass(void) {
-  return getCharDef();
+  return getCharIcon();
 }
 
-void Shot::move(void) {
+void Shot::move(int direction) {
 
 }

@@ -20,15 +20,21 @@ UserSpaceship::UserSpaceship(int posx, int posy)
 }
 
 // Once UserSpaceship is a concrete class that inherit from abstract classes,
-// UserSpaceship  must implement the pure virtual functions declared in the base classes.
+// UserSpaceship must implement the pure virtual functions declared in the base classes.
 char UserSpaceship::getClass(void) {
-  return getCharDef();
+  return getCharIcon();
 }
 
-void UserSpaceship::move(void) {
-
+void UserSpaceship::move(int direction) {
+   if (direction == LEFT) {
+     //ypos--;
+   }
+   else if (direction == RIGHT) {
+     //ypos++;
+   }
 }
 
 void UserSpaceship::shoot(void) {
 
+  cout << "oi" << endl;
 }

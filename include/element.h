@@ -5,10 +5,10 @@
 using namespace std;
 
 // Abstract class inherited by all the interactive objects in the game.
-class Element 
+class Element
 {
   private:
-    char charDef; // character used to define the object in the map
+    char charIcon; // character used to define the object in the map
     int xpos;     // position of the object in the map matrix
     int ypos;
 
@@ -17,7 +17,7 @@ class Element
     ~Element();
     Element(char def, int posx, int posy);
     bool isColliding(Element *element);
-    char getCharDef(void);
+    char getCharIcon(void);
     pair<int, int> getPosition(void);
     void setPosition(int posx, int posy);
 

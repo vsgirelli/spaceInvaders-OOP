@@ -13,6 +13,6 @@ class EnemySpaceship : public Spaceship
     ~EnemySpaceship();
     EnemySpaceship(int posx, int posy, int dir);
     char getClass(void);
-    void move(void);
+    void move(int direction);
     void shoot(void);
 };

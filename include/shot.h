@@ -15,5 +15,5 @@ class Shot: public MovingElement
     ~Shot();
     Shot(int posx, int posy, int dir);
     char getClass(void);
-    void move(void);
+    void move(int direction);
 };

@@ -11,17 +11,17 @@ Element::~Element() {
 }
 
 Element::Element(char def, int posx, int posy) {
-  charDef = def;
+  charIcon = def;
   xpos = posx;
   ypos = posy;
 }
 
 bool Element::isColliding(Element *element) {
-
+return true;
 }
 
-char Element::getCharDef(void) {
-  return charDef;
+char Element::getCharIcon(void) {
+  return charIcon;
 }
 
 pair<int, int> Element::getPosition(void) {

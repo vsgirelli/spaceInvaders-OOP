@@ -22,10 +22,10 @@ EnemySpaceship::EnemySpaceship(int posx, int posy, int dir)
 // Once EnemySpaceship is a concrete class that inherit from abstract classes,
 // EnemySpaceship  must implement the pure virtual functions declared in the base classes.
 char EnemySpaceship::getClass(void) {
-  return getCharDef();
+  return getCharIcon();
 }
 
-void EnemySpaceship::move(void) {
+void EnemySpaceship::move(int direction) {
 
 }
 
