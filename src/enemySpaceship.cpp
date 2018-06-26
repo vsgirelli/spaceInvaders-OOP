@@ -14,7 +14,6 @@ EnemySpaceship::EnemySpaceship()
 
 EnemySpaceship::~EnemySpaceship()
 {
-
 }
 
 EnemySpaceship::EnemySpaceship(int posx, int posy)

@@ -15,6 +15,17 @@ Game::~Game() {
   // isso faz com que o tipo de relação (pro UML)
   // deva ser uma composição
   // fazer as destroy pra tudo que foi load
+  for (int i = enemies.size() - 1; i >= 0; i--) {
+    delete(enemies[i]);
+  }
+  enemies.erase(enemies.begin(), enemies.end());
+
+  for (int i = barriers.size() - 1; i >= 0; i--) {
+    delete(barriers[i]);
+  }
+  barriers.erase(barriers.begin(), barriers.end());
+
+  delete(user);
 }
 
 /*
@@ -82,9 +93,9 @@ void Game::loadPlayer(void) {
 }
 
 /*
-* For each occurrence of '@' in the originalMap matrix
-* is istantiated a Spaceship object.
-*/
+ * For each occurrence of '@' in the originalMap matrix
+ * is istantiated a Spaceship object.
+ */
 void Game::loadSpaceships(void) {
   for (int i = 0; i < MAX_LINES; i++) {
     for (int j = 0; j < MAX_COLUMNS; j++) {
@@ -97,9 +108,9 @@ void Game::loadSpaceships(void) {
 }
 
 /*
-* For each occurrence of '#' in the originalMap matrix
-* is istantiated a Barrier object.
-*/
+ * For each occurrence of '#' in the originalMap matrix
+ * is istantiated a Barrier object.
+ */
 void Game::loadBarriers(void) {
   for (int i = 0; i < MAX_LINES; i++) {
     for (int j = 0; j < MAX_COLUMNS; j++) {
@@ -151,7 +162,7 @@ int Game::mainLoop(void) {
 }
 
 /*
- * Clears the screen and the map matrix
+ * Clears the screen and the map matrix.
  */
 void Game::clearMap(void) {
   clearScreen();
@@ -159,7 +170,7 @@ void Game::clearMap(void) {
 }
 
 /*
- * Clears the map to later fill with the new positions
+ * Clears the map to later fill with the new positions.
  */
 void Game::resetMap(void) {
   for (int i = 0; i < MAX_LINES; i++) {
