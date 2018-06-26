@@ -31,12 +31,12 @@ void Menu::mainLoop(void) {
       waitClock(endFrameTime);
     }
     keyPressed = getchar();
-  } while(keyPressed != ENTER && keyPressed != QUIT && keyPressed != quit && keyPressed != ESC);
+  } while(keyPressed != ENTER && keyPressed != ESC);
   
   if (keyPressed == ENTER) {
     game.startGame();
   }
-  else if(keyPressed == QUIT || keyPressed == quit || keyPressed == ESC) {
+  else if(keyPressed == ESC) {
     //cout << "termina jogo" << endl;
   }
 }

@@ -132,9 +132,9 @@ void Game::mainLoop(void) {
       updateUserPosition(LEFT);
     }
 
-  } while(keyPressed != QUIT && keyPressed != quit && keyPressed != ESC);
+  } while(keyPressed != ESC);
 
-  if(keyPressed == QUIT || keyPressed == quit || keyPressed == ESC) {
+  if(keyPressed == ESC) {
     cout << "termina jogo" << endl;
   }
 }
