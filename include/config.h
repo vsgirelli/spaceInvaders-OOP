@@ -49,6 +49,6 @@ using namespace std;
 #define MOVE_UPWARD 3
 #define MOVE_DOWNWARD 4
 #define LEFTSTEPS 17;
+#define PROBABILITY 30;
 #define RIGHTSTEPS 17;
 #define INITIALSTEPS 10;
-#define SHOTPROBABILITY 30;

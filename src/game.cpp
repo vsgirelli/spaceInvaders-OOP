@@ -188,9 +188,10 @@ void Game::updateUserPosition(int direction) {
 void Game::updateShots() {
   srand (time(NULL));
   int j = 0;
+  bool randomicShot = rand() % 100 < PROBABILITY;
 
-  //Gerar randomicamente com supostos 40% de chance um tiro randomico a cada iteracao
-  if ((rand() % 100 < SHOTPROBABILITY && (int) enemies.size())) {
+  //Gerar randomicamente com supostos 30% um tiro randomico a cada iteracao
+  if ( (randomicShot) && (int) enemies.size() ) {
     int randomEnemy = rand() % (int) enemies.size();
     projectiles.push_back(enemies[randomEnemy]->shoot());
   }
