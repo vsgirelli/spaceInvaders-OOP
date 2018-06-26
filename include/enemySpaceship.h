@@ -15,6 +15,3 @@ class EnemySpaceship : public Spaceship
     void move(int direction);
     void shoot(void);
 };
-
-int EnemySpaceship::direction;
-int EnemySpaceship::directionSteps;

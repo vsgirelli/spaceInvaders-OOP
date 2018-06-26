@@ -94,7 +94,7 @@ void Game::loadBarriers(void) {
   for (int i = 0; i < MAX_LINES; i++) {
     for (int j = 0; j < MAX_COLUMNS; j++) {
       if (map[i][j] == charBarrier) {
-        barriers.push_back(new Barrier(i, j));
+        barriers.push_back(new Barrier(j, i));
         auxMap[i][j] = ' ';
       }
     }
@@ -163,9 +163,16 @@ void Game::resetMap(void) {
 void Game::fillMap(void) {
   pair<int,int> position;
   char icon;
+
   for (int i = 0; i < (int) enemies.size(); i++) {
     position = enemies[i]->getPosition();
     icon = enemies[i]->getCharIcon();
+    map[position.second][position.first] = icon;
+  }
+
+  for (int i = 0; i < (int) barriers.size(); i++) {
+    position = barriers[i]->getPosition();
+    icon = barriers[i]->getCharIcon();
     map[position.second][position.first] = icon;
   }
 }
@@ -178,12 +185,22 @@ void Game::updateUserPosition(int direction) {
   user->move(direction);
 }
 
-int Game::updatePositions(void) {
+void Game::updatePositions(void) {
 
+  updateEnemies();
+  fillMap();
+
+}
+
+//TODO
+//New function para atualizar posicoes dos inimigos segundo direcao e atualizar direcao
+//TODO adicionar no UML
+void Game::updateEnemies(){
   if (EnemySpaceship::directionSteps > 0) {
     for (int i = 0; i < (int) enemies.size(); i++) {
-      enemies[i]->move(MOVE_RIGHT);
+      enemies[i]->move(EnemySpaceship::direction);
     }
+    EnemySpaceship::directionSteps -= 1;
   }
 
   else
@@ -201,12 +218,5 @@ int Game::updatePositions(void) {
     for (int i = 0; i < (int) enemies.size(); i++) {
       enemies[i]->move(MOVE_DOWNWARD);
     }
-
   }
-
-
-  fillMap();
-
-
-  return 0;
 }
