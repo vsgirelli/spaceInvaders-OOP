@@ -12,7 +12,7 @@
 |                                                          |
 |                 A = LEFT       D = RIGHT                 |
 |                                                          |
-|                      SPACE = SHOOT                       |
+|                      SPACE = SHOT                        |
 |                                                       @  |
 |                       ESC = QUIT                         |
 |             @                                            |

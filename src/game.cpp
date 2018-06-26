@@ -55,20 +55,30 @@ void Game::startGame(void) {
   loadBarriers();
   loadStatusBar();
   loadPlayer();
-  mainLoop();
+  int ret = mainLoop();
+  endGame(ret);
 }
 
-void Game::loadPlayer(void) {
-  user = new UserSpaceship(MAX_COLUMNS / 2, MAX_LINES - 1);
-  pair<int, int> pos = user->getPosition();
-  cout << "x: " << pos.first << " y: " << pos.second << endl; 
+void Game::endGame(int result) {
+  switch (result) {
+    case DEAD:
+      clearScreen();
+    break;
+
+    case EXIT:
+      clearScreen();
+    break;
+  }
 }
 
-// vai ser passada pra a classe display
 void Game::printGame(void) {
   for (int i = 0; i < MAX_LINES; i++) {
     cout << map[i] << endl;
   }
+}
+
+void Game::loadPlayer(void) {
+  user = new UserSpaceship(MAX_LINES - 2, MAX_COLUMNS / 2);
 }
 
 /*
@@ -108,13 +118,14 @@ void Game::loadStatusBar(void) {
 /*
  * TODO atualizar descrição da mainLoop
  */
-void Game::mainLoop(void) {
+int Game::mainLoop(void) {
   char keyPressed = '\0';
   clock_t endFrameTime;
+  bool alive;
 
   do {
-    // while user does not press any key
-    while(!kbhit()) {
+    // while user does not press any key and is still alive
+    while(!kbhit() && user->isAlive()) {
       clearMap();
       updatePositions();
       printGame();
@@ -123,14 +134,19 @@ void Game::mainLoop(void) {
       waitClock(endFrameTime);
     }
 
+    if (!user->isAlive()) {
+      break;
+    }
     // if kbhit returns 1, means that the user pressed a key
     keyPressed = getchar();
     updateUserPosition(keyPressed);
-
   } while(keyPressed != ESC);
 
-  if(keyPressed == ESC) {
-    cout << "termina jogo" << endl;
+  if (!alive) {
+    return DEAD;
+  }
+  else if (keyPressed == ESC) {
+    return EXIT;
   }
 }
 
@@ -170,10 +186,25 @@ void Game::fillMap(void) {
     icon = barriers[i]->getCharIcon();
     map[position.second][position.first] = icon;
   }
+
+  position = user->getPosition();
+  icon = user->getCharIcon();
+  map[position.first][position.second] = icon;
 }
 
-void Game::updateUserPosition(int direction) {
-  user->move(direction);
+void Game::updateUserPosition(char direction) {
+  if (direction == LEFT || direction == left) {
+    user->move(LEFT);
+  }
+  else if (direction == RIGHT || direction == right) {
+    user->move(RIGHT);
+  }
+  else if (direction == UP || direction == up) {
+    user->move(UP);
+  }
+  else if (direction == DOWN || direction == down) {
+    user->move(DOWN);
+  }
 }
 
 /*
@@ -190,6 +221,8 @@ void Game::updatePositions(void) {
  * and on the current class directionSteps.
  */
 void Game::updateEnemies(void){
+  pair<int, int> position;
+
   // If the enemies still can walk on the current direction,
   if (EnemySpaceship::directionSteps > 0) {
     // for each EnemySpaceship, call move.
@@ -218,6 +251,13 @@ void Game::updateEnemies(void){
     // they can go down one position.
     for (int i = 0; i < (int) enemies.size(); i++) {
       enemies[i]->move(MOVE_DOWNWARD);
+
+      // If the enemies reach the bottom of the map,
+      // the user dies.
+      position = enemies[i]->getPosition();
+      if (position.second >= MAX_LINES - 15) {
+        user->setDead();
+      }
     }
   }
 }

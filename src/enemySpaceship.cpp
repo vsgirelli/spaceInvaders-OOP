@@ -33,19 +33,19 @@ void EnemySpaceship::move(int direction) {
 
   switch (direction) {
     case MOVE_RIGHT:
-      position.first +=1;
+      position.first++;
     break;
 
     case MOVE_LEFT:
-      position.first -=1;
+      position.first--;
     break;
 
     case MOVE_UPWARD:
-    position.second -=1;
+    position.second--;
     break;
 
     case MOVE_DOWNWARD:
-    position.second +=1;
+    position.second++;
     break;
   }
 

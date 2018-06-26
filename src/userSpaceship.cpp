@@ -5,7 +5,7 @@ using namespace std;
 UserSpaceship::UserSpaceship()
   : Spaceship()
 {
-
+  alive = true;
 }
 
 UserSpaceship::~UserSpaceship()
@@ -16,7 +16,7 @@ UserSpaceship::~UserSpaceship()
 UserSpaceship::UserSpaceship(int posx, int posy)
   : Spaceship(charUser, posx, posy)
 {
-
+  alive = true;
 }
 
 // Once UserSpaceship is a concrete class that inherit from abstract classes,
@@ -33,16 +33,35 @@ char UserSpaceship::getClass(void) {
 void UserSpaceship::move(int direction) {
   pair<int, int> position = getPosition();
 
-  if (direction == LEFT) {
-    position.first--;
-    setPosition(position);
+  switch(direction) {
+    case LEFT:
+      position.second--;
+    break;
+
+    case RIGHT:
+      position.second++;
+    break;
+
+    case UP:
+      position.first--;     
+    break;
+
+    case DOWN:
+      position.first++;
+    break;
   }
-  else if (direction == RIGHT) {
-    position.first++;
-    setPosition(position);
-  }
+
+  setPosition(position);
 }
 
 void UserSpaceship::shoot(void) {
 
+}
+
+bool UserSpaceship::isAlive(void) {
+  return alive;
+}
+
+void UserSpaceship::setDead(void) {
+  alive = false;
 }

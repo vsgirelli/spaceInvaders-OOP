@@ -51,3 +51,5 @@ using namespace std;
 #define LEFTSTEPS 17;
 #define RIGHTSTEPS 17;
 #define INITIALSTEPS 10;
+#define DEAD 0
+#define EXIT 1

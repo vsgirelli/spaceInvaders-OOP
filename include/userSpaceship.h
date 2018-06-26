@@ -5,6 +5,9 @@ using namespace std;
 
 class UserSpaceship: public Spaceship
 {
+  private:
+    bool alive;
+
   public:
     UserSpaceship();
     ~UserSpaceship();
@@ -12,4 +15,6 @@ class UserSpaceship: public Spaceship
     char getClass(void);
     void move(int direction);
     void shoot(void);
+    bool isAlive(void);
+    void setDead(void);
 };

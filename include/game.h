@@ -28,16 +28,16 @@ class Game
     void loadSpaceships(void);
     void loadBarriers(void);
     void loadPlayer(void);
-    void mainLoop(void);
+    int mainLoop(void);
     void clearMap(void);
     void resetMap(void);
     void loadStatusBar(void);
     void fillMap(void);
     //void loadStatusBar(void);
-    void updateUserPosition(int direction);
+    void updateUserPosition(char direction);
     void updatePositions(void);
     void updateEnemies(void);
     //void checkBulletColisions(void); // percorre o vetor de tiros e checa
     //template <typename T> void killObject(T *obj); // destrói objeto atingido por um tiro
-    //void endGame(void);
+    void endGame(int result);
 };

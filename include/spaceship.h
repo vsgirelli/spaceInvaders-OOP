@@ -23,5 +23,4 @@ class Spaceship : public MovingElement
     // which is a function that is only declared
     // and must be overridden by any concrete derived class.
     virtual void shoot(void) = 0;
-    void moveShots(vector<Shot*> shots);
 };

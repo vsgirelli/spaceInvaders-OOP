@@ -17,7 +17,3 @@ Spaceship::Spaceship(char def, int posx, int posy)
 {
 
 }
-
-void Spaceship::moveShots(vector<Shot*> shots) {
-
-}
