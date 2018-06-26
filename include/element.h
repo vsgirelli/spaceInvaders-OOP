@@ -9,7 +9,7 @@ class Element
 {
   private:
     char charIcon; // character used to define the object in the map
-    int xpos;     // position of the object in the map matrix
+    int xpos;      // position of the object in the map matrix
     int ypos;
 
   public:
