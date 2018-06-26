@@ -20,15 +20,23 @@ void Menu::startMenu(void) {
  */
 void Menu::mainLoop(void) {
   char keyPressed = '\0';
-  do {
-    printMenu();
-    keyPressed = cin.get();
-  } while(keyPressed != ENTER && keyPressed != QUIT && keyPressed != quit);
+  clock_t endFrameTime;
+
+  do { 
+    // while user does not press any key
+    while(!kbhit()) {
+      clearScreen();
+      printMenu();
+      endFrameTime = clock(); // gets the current time
+      waitClock(endFrameTime);
+    }
+    keyPressed = getchar();
+  } while(keyPressed != ENTER && keyPressed != QUIT && keyPressed != quit && keyPressed != ESC);
   
   if (keyPressed == ENTER) {
     game.startGame();
   }
-  else if(keyPressed == QUIT || keyPressed == quit) {
+  else if(keyPressed == QUIT || keyPressed == quit || keyPressed == ESC) {
     //cout << "termina jogo" << endl;
   }
 }

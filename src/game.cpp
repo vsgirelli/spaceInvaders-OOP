@@ -118,8 +118,8 @@ void Game::mainLoop(void) {
       updatePositions();
       printGame();
       //std::cout << "Enemy[0] = " << enemies[0]->getPosition().first << "," << enemies[0]->getPosition().second << '\n';
+      
       endFrameTime = clock(); // gets the current time
-
       waitClock(endFrameTime);
     }
 
