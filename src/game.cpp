@@ -25,6 +25,11 @@ Game::~Game() {
   }
   barriers.erase(barriers.begin(), barriers.end());
 
+  for (int i = projectiles.size() - 1; i >= 0; i-- ) {
+    delete(projectiles[i]);
+  }
+  projectiles.erase(projectiles.begin(), projectiles.end());
+
   delete(user);
 }
 
@@ -268,8 +273,6 @@ void Game::updatePositions(void) {
  * and on the current class directionSteps.
  */
 void Game::updateEnemies(void){
-  pair<int, int> position;
-
   // If the enemies still can walk on the current direction,
   if (EnemySpaceship::directionSteps > 0) {
     // for each EnemySpaceship, call move.
@@ -301,8 +304,7 @@ void Game::updateEnemies(void){
 
       // If the enemies reach the bottom of the map,
       // the user dies.
-      position = enemies[i]->getPosition();
-      if (position.second >= MAX_LINES - 15) {
+      if (enemies[i]->getPosition().second >= MAX_LINES - 2) {
         user->setDead();
       }
     }
