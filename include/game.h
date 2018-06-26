@@ -32,7 +32,7 @@ class Game
     void mainLoop(void);
     void clearMap(void);
     void resetMap(void);
-    //void loadStatusBar(void);
+    void loadStatusBar(void);
     void updateUserPosition(int direction);
     int updatePositions(void);
     //void checkBulletColisions(void); // percorre o vetor de tiros e checa

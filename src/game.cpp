@@ -51,7 +51,7 @@ void Game::startGame(void) {
   clearMap();
   loadSpaceships();
   loadBarriers();
-  //loadStatusBar();
+  loadStatusBar();
   loadPlayer();
   mainLoop();
 }
@@ -99,6 +99,10 @@ void Game::loadBarriers(void) {
       }
     }
   }
+}
+
+void Game::loadStatusBar(void) {
+
 }
 
 /*
@@ -153,10 +157,6 @@ void Game::resetMap(void) {
     }
 }
 
-/*
- *
- *
- */
 void Game::updateUserPosition(int direction) {
   user->move(direction);
 }
