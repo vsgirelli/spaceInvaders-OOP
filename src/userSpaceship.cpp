@@ -31,13 +31,15 @@ char UserSpaceship::getClass(void) {
  * User moving to right -> increments it's ypos value;
  */
 void UserSpaceship::move(int direction) {
-  pair<int, int> pos = getPosition();
+  pair<int, int> position = getPosition();
 
   if (direction == LEFT) {
-    setPosition(--pos.first, pos.second);
+    position.first--;
+    setPosition(position);
   }
   else if (direction == RIGHT) {
-    setPosition(++pos.first, pos.second);
+    position.first++;
+    setPosition(position);
   }
 }
 
