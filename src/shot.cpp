@@ -25,6 +25,23 @@ char Shot::getClass(void) {
   return getCharIcon();
 }
 
-void Shot::move(int direction) {
+//TODO veja isso VAL
+//@override
+void Shot::move(void) {
+  move(direction);
+}
 
+void Shot::move(int direction) {
+  pair<int,int> position = getPosition();
+  switch (direction) {
+
+    case MOVE_DOWNWARD:
+    position.second += 1;
+    break;
+
+    case MOVE_UPWARD:
+    position.second -= 1;
+    break;
+  }
+  setPosition(position);
 }

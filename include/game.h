@@ -14,6 +14,7 @@ class Game
     char originalMap[MAX_LINES][MAX_COLUMNS];   // map matrix read from a .txt
     vector<EnemySpaceship*> enemies;            // enemies spaceships from the map
     vector<Barrier*> barriers;                  // barriers from the map
+    vector<Shot*> projectiles;                  // bullets from the map
     //StatusBar statusBar;                      // status bar of the game
     UserSpaceship *user;                        // user spaceship
 
@@ -37,6 +38,7 @@ class Game
     void updateUserPosition(char direction);
     void updatePositions(void);
     void updateEnemies(void);
+    void updateShots(void);
     //void checkBulletColisions(void); // percorre o vetor de tiros e checa
     //template <typename T> void killObject(T *obj); // destrói objeto atingido por um tiro
     void endGame(int result);

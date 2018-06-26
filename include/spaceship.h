@@ -22,5 +22,6 @@ class Spaceship : public MovingElement
     // A class is abstract if it has at least one pure virtual function,
     // which is a function that is only declared
     // and must be overridden by any concrete derived class.
-    virtual void shoot(void) = 0;
+    virtual Shot* shoot(void) = 0;
+    void moveShots(vector<Shot*> shots);
 };

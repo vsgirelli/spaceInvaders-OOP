@@ -186,9 +186,16 @@ void Game::fillMap(void) {
   pair<int,int> position;
   char icon;
 
+
   for (int i = 0; i < (int) enemies.size(); i++) {
     position = enemies[i]->getPosition();
     icon = enemies[i]->getCharIcon();
+    map[position.second][position.first] = icon;
+  }
+
+  for (int i = 0; i < (int) projectiles.size(); i++) {
+    position = projectiles[i]->getPosition();
+    icon = projectiles[i]->getCharIcon();
     map[position.second][position.first] = icon;
   }
 
@@ -218,12 +225,41 @@ void Game::updateUserPosition(char direction) {
   }
 }
 
+
+void Game::updateShots() {
+  srand (time(NULL));
+  int j = 0;
+
+  //Gerar randomicamente com supostos 40% de chance um tiro randomico a cada iteracao
+  if ((rand() % 100 < SHOTPROBABILITY && (int) enemies.size())) {
+    int randomEnemy = rand() % (int) enemies.size();
+    projectiles.push_back(enemies[randomEnemy]->shoot());
+  }
+
+  //Mover todos os projetes e testar colisao e que nao passe do chao
+  for (int i = 0; i < (int) projectiles.size(); i++) {
+    projectiles[j]->move();
+    if (projectiles[j]->getPosition().second > MAX_LINES-2) {
+      //TODO arrumar isso pq ele n sabe direito como chamar delete por ser polimorfico
+      delete projectiles[j];
+      projectiles.erase(projectiles.begin() + j);
+      j--;
+    }
+    else
+    {
+      //TODO
+      //checkCollision()
+    }
+    j++;
+  }
+}
+
 /*
  *  Updates positions of enemies and shots on the map on each clock.
  */
 void Game::updatePositions(void) {
   updateEnemies();
-  //updateShots();
+  updateShots();
   fillMap();
 }
 

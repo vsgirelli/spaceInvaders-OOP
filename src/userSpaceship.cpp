@@ -54,8 +54,10 @@ void UserSpaceship::move(int direction) {
   setPosition(position);
 }
 
-void UserSpaceship::shoot(void) {
+//TODO VAL UML
+Shot * UserSpaceship::shoot(void) {
 
+  return NULL;
 }
 
 bool UserSpaceship::isAlive(void) {

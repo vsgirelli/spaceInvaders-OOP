@@ -51,6 +51,9 @@ void EnemySpaceship::move(int direction) {
   setPosition(position);
 }
 
-void EnemySpaceship::shoot(void) {
+//TODO VAL UML
+Shot * EnemySpaceship::shoot(void) {
+  pair<int, int> position = getPosition();
 
+  return new Shot(position.first,position.second, MOVE_DOWNWARD);
 }
