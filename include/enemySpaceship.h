@@ -5,14 +5,16 @@ using namespace std;
 
 class EnemySpaceship : public Spaceship
 {
-  private:
-    int direction;  // Movimentation direction
-
   public:
+    static int direction;
+    static int directionSteps;
     EnemySpaceship();
     ~EnemySpaceship();
-    EnemySpaceship(int posx, int posy, int dir);
+    EnemySpaceship(int posx, int posy);
     char getClass(void);
     void move(int direction);
     void shoot(void);
 };
+
+int EnemySpaceship::direction;
+int EnemySpaceship::directionSteps;

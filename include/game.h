@@ -32,6 +32,7 @@ class Game
     void mainLoop(void);
     void clearMap(void);
     void resetMap(void);
+    void fillMap(void);
     //void loadStatusBar(void);
     void updateUserPosition(int direction);
     int updatePositions(void);
