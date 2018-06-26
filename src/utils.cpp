@@ -40,7 +40,7 @@ void waitClock(clock_t endFrameTime) {
   do {
     actualTime = clock();
     deltaTime = actualTime - endFrameTime;
-  } while(clockToMilliseconds(deltaTime) < 1200.0);
+  } while(clockToMilliseconds(deltaTime) < 600.0);
 }
 
 double clockToMilliseconds(clock_t ticks) {
