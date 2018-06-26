@@ -2,6 +2,10 @@
 
 using namespace std;
 
+
+int EnemySpaceship::direction;
+int EnemySpaceship::directionSteps;
+
 EnemySpaceship::EnemySpaceship()
   : Spaceship()
 {
