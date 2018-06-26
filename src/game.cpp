@@ -5,7 +5,7 @@ using namespace std;
 Game::Game() {
   loadMap();
   EnemySpaceship::direction = MOVE_RIGHT;
-  EnemySpaceship::directionSteps = RIGHTSTEPS;
+  EnemySpaceship::directionSteps = INITIALSTEPS;
 }
 
 Game::~Game() {
@@ -24,7 +24,7 @@ void Game::loadMap() {
   /*
    * Manipulating files is easier with strings,
    * so we copy an entire line to a string and then
-   * we copy the string to a line of the auxMap matrix
+   * we copy the string to a line of the originalMap matrix
    */
   string aux;
   ifstream arq;
@@ -33,8 +33,8 @@ void Game::loadMap() {
   if (arq.is_open()) {
     int i = 0;
     while (getline(arq, aux)) {
-      aux.copy(auxMap[i], MAX_COLUMNS - 1, 0);
-      auxMap[i][MAX_COLUMNS - 1] = '\0';
+      aux.copy(originalMap[i], MAX_COLUMNS - 1, 0);
+      originalMap[i][MAX_COLUMNS - 1] = '\0';
       i++;
     }
     arq.close();
@@ -78,7 +78,7 @@ void Game::loadSpaceships(void) {
     for (int j = 0; j < MAX_COLUMNS; j++) {
       if (map[i][j] == charEnemy) {
         enemies.push_back(new EnemySpaceship(j, i));
-        auxMap[i][j] = ' ';
+        originalMap[i][j] = ' ';
       }
     }
   }
@@ -93,7 +93,7 @@ void Game::loadBarriers(void) {
     for (int j = 0; j < MAX_COLUMNS; j++) {
       if (map[i][j] == charBarrier) {
         barriers.push_back(new Barrier(j, i));
-        auxMap[i][j] = ' ';
+        originalMap[i][j] = ' ';
       }
     }
   }
@@ -111,7 +111,6 @@ void Game::mainLoop(void) {
       clearMap();
       updatePositions();
       printGame();
-      //std::cout << "Enemy[0] = " << enemies[0]->getPosition().first << "," << enemies[0]->getPosition().second << '\n';
       endFrameTime = clock(); // gets the current time
 
       waitClock(endFrameTime);
@@ -137,7 +136,7 @@ void Game::clearMap(void) {
 void Game::resetMap(void) {
   for (int i = 0; i < MAX_LINES; i++) {
         for(int j = 0; j < MAX_COLUMNS; j++)
-            map[i][j] = auxMap[i][j];
+            map[i][j] = originalMap[i][j];
     }
 }
 

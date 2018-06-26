@@ -11,7 +11,7 @@ class Game
 {
   private:
     char map[MAX_LINES][MAX_COLUMNS];     // map matrix read from a .txt
-    char auxMap[MAX_LINES][MAX_COLUMNS];  // map matrix read from a .txt
+    char originalMap[MAX_LINES][MAX_COLUMNS];  // map matrix read from a .txt
     vector<EnemySpaceship*> enemies;      // enemies spaceships from the map
     vector<Barrier*> barriers;            // barriers from the map
     //StatusBar statusBar;                // status bar of the game
