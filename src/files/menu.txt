@@ -7,15 +7,15 @@
 |                     SPACE INVADERS                       |
 |                                                          |
 |                                                 @        |
-|     @               @                                    |
+|     @                     @                              |
 |                                                          |
 |                                                          |
 |                 A = LEFT       D = RIGHT                 |
 |                                                          |
-|     @                SPACE = SHOOT                       |
+|                      SPACE = SHOOT                       |
 |                                                       @  |
 |                       ESC = QUIT                         |
-|                                                          |
+|             @                                            |
 |                                                          |
 |                                     @                    |
 |                                                          |
