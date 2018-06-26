@@ -24,7 +24,7 @@ void Game::loadMap() {
   /*
    * Manipulating files is easier with strings,
    * so we copy an entire line to a string and then
-   * we copy the string to a line of the auxMap matrix
+   * we copy the string to a line of the originalMap matrix
    */
   string aux;
   ifstream arq;
@@ -33,8 +33,8 @@ void Game::loadMap() {
   if (arq.is_open()) {
     int i = 0;
     while (getline(arq, aux)) {
-      aux.copy(auxMap[i], MAX_COLUMNS - 1, 0);
-      auxMap[i][MAX_COLUMNS - 1] = '\0';
+      aux.copy(originalMap[i], MAX_COLUMNS - 1, 0);
+      originalMap[i][MAX_COLUMNS - 1] = '\0';
       i++;
     }
     arq.close();
@@ -72,7 +72,7 @@ void Game::printGame(void) {
 }
 
 /*
-* For each occurrence of '@' in the map matrix
+* For each occurrence of '@' in the originalMap matrix
 * is istantiated a Spaceship object.
 */
 void Game::loadSpaceships(void) {
@@ -80,14 +80,14 @@ void Game::loadSpaceships(void) {
     for (int j = 0; j < MAX_COLUMNS; j++) {
       if (map[i][j] == charEnemy) {
         enemies.push_back(new EnemySpaceship(j, i));
-        auxMap[i][j] = ' ';
+        originalMap[i][j] = ' ';
       }
     }
   }
 }
 
 /*
-* For each occurrence of '#' in the map matrix
+* For each occurrence of '#' in the originalMap matrix
 * is istantiated a Barrier object.
 */
 void Game::loadBarriers(void) {
@@ -95,7 +95,7 @@ void Game::loadBarriers(void) {
     for (int j = 0; j < MAX_COLUMNS; j++) {
       if (map[i][j] == charBarrier) {
         barriers.push_back(new Barrier(j, i));
-        auxMap[i][j] = ' ';
+        originalMap[i][j] = ' ';
       }
     }
   }
@@ -111,26 +111,21 @@ void Game::loadStatusBar(void) {
 void Game::mainLoop(void) {
   char keyPressed = '\0';
   clock_t endFrameTime;
+
   do {
     // while user does not press any key
     while(!kbhit()) {
       clearMap();
       updatePositions();
       printGame();
-      //std::cout << "Enemy[0] = " << enemies[0]->getPosition().first << "," << enemies[0]->getPosition().second << '\n';
-      
+
       endFrameTime = clock(); // gets the current time
       waitClock(endFrameTime);
     }
 
     // if kbhit returns 1, means that the user pressed a key
     keyPressed = getchar();
-    if (keyPressed == RIGHT || keyPressed == right) {
-      updateUserPosition(RIGHT);
-    }
-    if (keyPressed == LEFT || keyPressed == left) {
-      updateUserPosition(LEFT);
-    }
+    updateUserPosition(keyPressed);
 
   } while(keyPressed != ESC);
 
@@ -140,7 +135,7 @@ void Game::mainLoop(void) {
 }
 
 /*
- * Clears the screen and updates the map matrix
+ * Clears the screen and the map matrix
  */
 void Game::clearMap(void) {
   clearScreen();
@@ -148,18 +143,18 @@ void Game::clearMap(void) {
 }
 
 /*
- * Updates the map matrix
+ * Clears the map to later fill with the new positions
  */
 void Game::resetMap(void) {
   for (int i = 0; i < MAX_LINES; i++) {
         for(int j = 0; j < MAX_COLUMNS; j++)
-            map[i][j] = auxMap[i][j];
-    }
+            map[i][j] = originalMap[i][j];
+  }
 }
 
-//TODO
-//New function para preencher mapa com elementos depois de resetar ele
-//TODO adicionar no UML
+/*
+ *  Fills the map matrix with the new positions of the objects.
+ */
 void Game::fillMap(void) {
   pair<int,int> position;
   char icon;
@@ -177,32 +172,36 @@ void Game::fillMap(void) {
   }
 }
 
-/*
- *
- *
- */
 void Game::updateUserPosition(int direction) {
   user->move(direction);
 }
 
+/*
+ *  Updates positions of enemies and shots on the map on each clock.
+ */
 void Game::updatePositions(void) {
-
   updateEnemies();
+  //updateShots();
   fillMap();
-
 }
 
-//TODO
-//New function para atualizar posicoes dos inimigos segundo direcao e atualizar direcao
-//TODO adicionar no UML
-void Game::updateEnemies(){
+/*
+ * Updates the enemie's position based on the current class direction
+ * and on the current class directionSteps.
+ */
+void Game::updateEnemies(void){
+  // If the enemies still can walk on the current direction,
   if (EnemySpaceship::directionSteps > 0) {
+    // for each EnemySpaceship, call move.
     for (int i = 0; i < (int) enemies.size(); i++) {
       enemies[i]->move(EnemySpaceship::direction);
     }
+    // Control the number of steps if each direction.
     EnemySpaceship::directionSteps -= 1;
   }
 
+  // If the enemies can't walk on the current direction anymore,
+  // then change it's direction and the current directionSteps available.
   else
   {
     if (EnemySpaceship::direction == MOVE_RIGHT) {
@@ -215,6 +214,8 @@ void Game::updateEnemies(){
       EnemySpaceship::directionSteps = RIGHTSTEPS;
     }
 
+    // When the enemies reached the end of that direction/line,
+    // they can go down one position.
     for (int i = 0; i < (int) enemies.size(); i++) {
       enemies[i]->move(MOVE_DOWNWARD);
     }

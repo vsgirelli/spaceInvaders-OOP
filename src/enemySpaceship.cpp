@@ -29,10 +29,9 @@ char EnemySpaceship::getClass(void) {
 }
 
 void EnemySpaceship::move(int direction) {
+  pair<int, int> position = getPosition();
 
-  pair<int,int> position = getPosition();
   switch (direction) {
-
     case MOVE_RIGHT:
       position.first +=1;
     break;
@@ -51,7 +50,6 @@ void EnemySpaceship::move(int direction) {
   }
 
   setPosition(position);
-
 }
 
 void EnemySpaceship::shoot(void) {

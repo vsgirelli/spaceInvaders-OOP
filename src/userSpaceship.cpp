@@ -26,7 +26,7 @@ char UserSpaceship::getClass(void) {
 }
 
 /*
- * Implements the user's movimentation.
+ * Implements the user's movimentation based on the user's input.
  * User moving to left -> decrements it's ypos value;
  * User moving to right -> increments it's ypos value;
  */

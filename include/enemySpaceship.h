@@ -6,8 +6,13 @@ using namespace std;
 class EnemySpaceship : public Spaceship
 {
   public:
-    static int direction;
-    static int directionSteps;
+    /* 
+     * Static attributes are class attributes,
+     * shared by all the objects from the class.
+     */
+    static int direction;       // Direction to walk.
+    static int directionSteps;  // Number of steps available in the current direction.
+
     EnemySpaceship();
     ~EnemySpaceship();
     EnemySpaceship(int posx, int posy);

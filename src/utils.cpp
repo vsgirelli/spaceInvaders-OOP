@@ -1,7 +1,7 @@
 #include "utils.h"
 
 /*
- *  
+ * Used to verify if the user pressed a key  
  */
 int kbhit(void) {
   struct termios oldt, newt;
@@ -23,9 +23,11 @@ int kbhit(void) {
   if(ch != EOF)
   {
     ungetc(ch, stdin);
+    // if pressed, returns 1
     return 1;
   }
 
+  // if not pressed, returns 0
   return 0;
 }
 
