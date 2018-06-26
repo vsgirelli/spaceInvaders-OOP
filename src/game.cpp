@@ -190,7 +190,7 @@ void Game::updateShots() {
   int j = 0;
 
   //Gerar randomicamente com supostos 40% de chance um tiro randomico a cada iteracao
-  if ((rand() % 100 < 40 && (int) enemies.size())) {
+  if ((rand() % 100 < SHOTPROBABILITY && (int) enemies.size())) {
     int randomEnemy = rand() % (int) enemies.size();
     projectiles.push_back(enemies[randomEnemy]->shoot());
   }
