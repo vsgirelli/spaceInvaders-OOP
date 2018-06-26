@@ -43,7 +43,7 @@ void UserSpaceship::move(int direction) {
     break;
 
     case UP:
-      position.first--;     
+      position.first--;
     break;
 
     case DOWN:
@@ -54,7 +54,8 @@ void UserSpaceship::move(int direction) {
   setPosition(position);
 }
 
-//TODO VAL UML
+// Once UserSpaceship is a concrete class that inherit from abstract classes,
+// UserSpaceship must implement the pure virtual functions declared in the base classes.
 Shot * UserSpaceship::shoot(void) {
 
   return NULL;

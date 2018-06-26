@@ -8,7 +8,7 @@ using namespace std;
 class Shot: public MovingElement
 {
   private:
-    int direction;  // Movimentation direction
+    int direction;  // Direction to walk. 
 
   public:
     Shot();

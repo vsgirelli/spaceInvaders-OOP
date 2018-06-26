@@ -235,7 +235,9 @@ void Game::updateShots() {
   srand (time(NULL));
   int j = 0;
 
-  //Gerar randomicamente com supostos 40% de chance um tiro randomico a cada iteracao
+  // Generates shots randomicaly, with 30% of chance to generate
+  // a shot in each iteration.
+  // The shots are created for a random enemy.
   if ((rand() % 100 < SHOTPROBABILITY && (int) enemies.size())) {
     int randomEnemy = rand() % (int) enemies.size();
     projectiles.push_back(enemies[randomEnemy]->shoot());
@@ -243,9 +245,8 @@ void Game::updateShots() {
 
   //Mover todos os projetes e testar colisao e que nao passe do chao
   for (int i = 0; i < (int) projectiles.size(); i++) {
-    projectiles[j]->move();
+    projectiles[j]->move(MOVE_DOWNWARD);
     if (projectiles[j]->getPosition().second > MAX_LINES-2) {
-      //TODO arrumar isso pq ele n sabe direito como chamar delete por ser polimorfico
       delete projectiles[j];
       projectiles.erase(projectiles.begin() + j);
       j--;

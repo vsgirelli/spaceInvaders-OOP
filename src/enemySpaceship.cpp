@@ -51,9 +51,10 @@ void EnemySpaceship::move(int direction) {
   setPosition(position);
 }
 
-//TODO VAL UML
+// Once EnemySpaceship is a concrete class that inherit from abstract classes,
+// EnemySpaceship must implement the pure virtual functions declared in the base classes.
 Shot * EnemySpaceship::shoot(void) {
   pair<int, int> position = getPosition();
 
-  return new Shot(position.first,position.second, MOVE_DOWNWARD);
+  return new Shot(position.first, position.second, MOVE_DOWNWARD);
 }

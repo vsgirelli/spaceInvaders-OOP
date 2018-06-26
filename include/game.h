@@ -34,12 +34,12 @@ class Game
     void resetMap(void);
     void loadStatusBar(void);
     void fillMap(void);
-    //void loadStatusBar(void);
     void updateUserPosition(char direction);
     void updatePositions(void);
     void updateEnemies(void);
     void updateShots(void);
+    void endGame(int result);
     //void checkBulletColisions(void); // percorre o vetor de tiros e checa
     //template <typename T> void killObject(T *obj); // destrói objeto atingido por um tiro
-    void endGame(int result);
+    //void loadStatusBar(void);
 };
