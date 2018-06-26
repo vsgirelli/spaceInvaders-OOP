@@ -47,4 +47,6 @@ using namespace std;
 #define MOVE_RIGHT 1
 #define MOVE_LEFT 2
 #define MOVE_UPWARD 3
-#define MOVW_DOWNWARD 4
+#define MOVE_DOWNWARD 4
+#define LEFTSTEPS 18;
+#define RIGHTSTEPS 10;

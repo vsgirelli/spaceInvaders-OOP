@@ -4,6 +4,8 @@ using namespace std;
 
 Game::Game() {
   loadMap();
+  EnemySpaceship::direction = MOVE_RIGHT;
+  EnemySpaceship::directionSteps = RIGHTSTEPS;
 }
 
 Game::~Game() {
@@ -77,9 +79,8 @@ void Game::loadSpaceships(void) {
   for (int i = 0; i < MAX_LINES; i++) {
     for (int j = 0; j < MAX_COLUMNS; j++) {
       if (map[i][j] == charEnemy) {
-        enemies.push_back(new EnemySpaceship(i, j, MOVE_RIGHT));
-        //FIXME
-        map[i][j] = ' ';
+        enemies.push_back(new EnemySpaceship(j, i));
+        auxMap[i][j] = ' ';
       }
     }
   }
@@ -94,8 +95,7 @@ void Game::loadBarriers(void) {
     for (int j = 0; j < MAX_COLUMNS; j++) {
       if (map[i][j] == charBarrier) {
         barriers.push_back(new Barrier(i, j));
-        //FIXME
-        map[i][j] = ' ';
+        auxMap[i][j] = ' ';
       }
     }
   }
@@ -111,13 +111,13 @@ void Game::loadStatusBar(void) {
 void Game::mainLoop(void) {
   char keyPressed = '\0';
   clock_t endFrameTime;
-
   do {
     // while user does not press any key
     while(!kbhit()) {
       clearMap();
       updatePositions();
       printGame();
+      //std::cout << "Enemy[0] = " << enemies[0]->getPosition().first << "," << enemies[0]->getPosition().second << '\n';
       endFrameTime = clock(); // gets the current time
 
       waitClock(endFrameTime);
@@ -157,11 +157,56 @@ void Game::resetMap(void) {
     }
 }
 
+//TODO
+//New function para preencher mapa com elementos depois de resetar ele
+//TODO adicionar no UML
+void Game::fillMap(void) {
+  pair<int,int> position;
+  char icon;
+  for (int i = 0; i < (int) enemies.size(); i++) {
+    position = enemies[i]->getPosition();
+    icon = enemies[i]->getCharIcon();
+    map[position.second][position.first] = icon;
+  }
+}
+
+/*
+ *
+ *
+ */
 void Game::updateUserPosition(int direction) {
   user->move(direction);
 }
 
 int Game::updatePositions(void) {
+
+  if (EnemySpaceship::directionSteps > 0) {
+    for (int i = 0; i < (int) enemies.size(); i++) {
+      enemies[i]->move(MOVE_RIGHT);
+    }
+  }
+
+  else
+  {
+    if (EnemySpaceship::direction == MOVE_RIGHT) {
+      EnemySpaceship::direction = MOVE_LEFT;
+      EnemySpaceship::directionSteps = LEFTSTEPS;
+    }
+    else
+    {
+      EnemySpaceship::direction = MOVE_RIGHT;
+      EnemySpaceship::directionSteps = RIGHTSTEPS;
+    }
+
+    for (int i = 0; i < (int) enemies.size(); i++) {
+      enemies[i]->move(MOVE_DOWNWARD);
+    }
+
+  }
+
+
+  fillMap();
+
 
   return 0;
 }

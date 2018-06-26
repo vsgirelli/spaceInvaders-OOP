@@ -19,7 +19,7 @@ class Element
     bool isColliding(Element *element);
     char getCharIcon(void);
     pair<int, int> getPosition(void);
-    void setPosition(int posx, int posy);
+    void setPosition(pair<int, int>);
 
     // A class is abstract if it has at least one pure virtual function,
     // which is a function that is only declared

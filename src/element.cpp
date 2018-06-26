@@ -28,7 +28,7 @@ pair<int, int> Element::getPosition(void) {
   return make_pair(xpos, ypos);
 }
 
-void Element::setPosition(int posx, int posy) {
-  xpos = posx;
-  ypos = posy;
+void Element::setPosition(pair<int, int> position) {
+  xpos = position.first;
+  ypos = position.second;
 }
