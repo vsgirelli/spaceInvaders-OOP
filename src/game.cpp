@@ -61,7 +61,7 @@ void Game::startGame(void) {
 void Game::loadPlayer(void) {
   user = new UserSpaceship(MAX_COLUMNS / 2, MAX_LINES - 1);
   pair<int, int> pos = user->getPosition();
-  cout << "x: " << pos.first << " y: " << pos.second << endl; 
+  cout << "x: " << pos.first << " y: " << pos.second << endl;
 }
 
 // vai ser passada pra a classe display
@@ -159,9 +159,16 @@ void Game::fillMap(void) {
   pair<int,int> position;
   char icon;
 
+
   for (int i = 0; i < (int) enemies.size(); i++) {
     position = enemies[i]->getPosition();
     icon = enemies[i]->getCharIcon();
+    map[position.second][position.first] = icon;
+  }
+
+  for (int i = 0; i < (int) projectiles.size(); i++) {
+    position = projectiles[i]->getPosition();
+    icon = projectiles[i]->getCharIcon();
     map[position.second][position.first] = icon;
   }
 
@@ -170,10 +177,40 @@ void Game::fillMap(void) {
     icon = barriers[i]->getCharIcon();
     map[position.second][position.first] = icon;
   }
+
 }
 
 void Game::updateUserPosition(int direction) {
   user->move(direction);
+}
+
+
+void Game::updateShots() {
+  srand (time(NULL));
+  int j = 0;
+
+  //Gerar randomicamente com supostos 40% de chance um tiro randomico a cada iteracao
+  if ((rand() % 100 < 40 && (int) enemies.size())) {
+    int randomEnemy = rand() % (int) enemies.size();
+    projectiles.push_back(enemies[randomEnemy]->shoot());
+  }
+
+  //Mover todos os projetes e testar colisao e que nao passe do chao
+  for (int i = 0; i < (int) projectiles.size(); i++) {
+    projectiles[j]->move();
+    if (projectiles[j]->getPosition().second > MAX_LINES-2) {
+      //TODO arrumar isso pq ele n sabe direito como chamar delete por ser polimorfico
+      delete projectiles[j];
+      projectiles.erase(projectiles.begin() + j);
+      j--;
+    }
+    else
+    {
+      //TODO
+      //checkCollision()
+    }
+    j++;
+  }
 }
 
 /*
@@ -181,7 +218,7 @@ void Game::updateUserPosition(int direction) {
  */
 void Game::updatePositions(void) {
   updateEnemies();
-  //updateShots();
+  updateShots();
   fillMap();
 }
 

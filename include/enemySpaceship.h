@@ -6,7 +6,7 @@ using namespace std;
 class EnemySpaceship : public Spaceship
 {
   public:
-    /* 
+    /*
      * Static attributes are class attributes,
      * shared by all the objects from the class.
      */
@@ -18,5 +18,5 @@ class EnemySpaceship : public Spaceship
     EnemySpaceship(int posx, int posy);
     char getClass(void);
     void move(int direction);
-    void shoot(void);
+    Shot * shoot(void);
 };

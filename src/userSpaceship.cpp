@@ -43,6 +43,8 @@ void UserSpaceship::move(int direction) {
   }
 }
 
-void UserSpaceship::shoot(void) {
+//TODO VAL UML
+Shot * UserSpaceship::shoot(void) {
 
+  return NULL;
 }
