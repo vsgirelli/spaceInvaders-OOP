@@ -5,7 +5,7 @@ using namespace std;
 Game::Game() {
   loadMap();
   EnemySpaceship::direction = MOVE_RIGHT;
-  EnemySpaceship::directionSteps = RIGHTSTEPS;
+  EnemySpaceship::directionSteps = INITIALSTEPS;
 }
 
 Game::~Game() {

@@ -17,7 +17,6 @@ class Game
     //StatusBar statusBar;                      // status bar of the game
     UserSpaceship *user;                        // user spaceship
 
-
   public:
     Game();
     ~Game();
