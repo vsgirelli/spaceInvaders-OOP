@@ -25,16 +25,22 @@ char UserSpaceship::getClass(void) {
   return getCharIcon();
 }
 
+/*
+ * Implements the user's movimentation.
+ * User moving to left -> decrements it's ypos value;
+ * User moving to right -> increments it's ypos value;
+ */
 void UserSpaceship::move(int direction) {
-   if (direction == LEFT) {
-     //ypos--;
-   }
-   else if (direction == RIGHT) {
-     //ypos++;
-   }
+  pair<int, int> pos = getPosition();
+
+  if (direction == LEFT) {
+    setPosition(--pos.first, pos.second);
+  }
+  else if (direction == RIGHT) {
+    setPosition(++pos.first, pos.second);
+  }
 }
 
 void UserSpaceship::shoot(void) {
 
-  cout << "oi" << endl;
 }

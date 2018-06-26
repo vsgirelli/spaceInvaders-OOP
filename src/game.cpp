@@ -58,6 +58,8 @@ void Game::startGame(void) {
 
 void Game::loadPlayer(void) {
   user = new UserSpaceship(MAX_COLUMNS / 2, MAX_LINES - 1);
+  pair<int, int> pos = user->getPosition();
+  cout << "x: " << pos.first << " y: " << pos.second << endl; 
 }
 
 // vai ser passada pra a classe display
@@ -107,6 +109,7 @@ void Game::mainLoop(void) {
   clock_t endFrameTime;
 
   do {
+    // while user does not press any key
     while(!kbhit()) {
       clearMap();
       updatePositions();
@@ -115,22 +118,34 @@ void Game::mainLoop(void) {
 
       waitClock(endFrameTime);
     }
+
+    // if kbhit returns 1, means that the user pressed a key
     keyPressed = getchar();
-    cout << "key: " << keyPressed << endl;
-    updateUserPosition(RIGHT);
+    if (keyPressed == RIGHT || keyPressed == right) {
+      updateUserPosition(RIGHT);
+    }
+    if (keyPressed == LEFT || keyPressed == left) {
+      updateUserPosition(LEFT);
+    }
 
-  } while(keyPressed != QUIT && keyPressed != quit);
+  } while(keyPressed != QUIT && keyPressed != quit && keyPressed != ESC);
 
-  if(keyPressed == QUIT || keyPressed == quit) {
+  if(keyPressed == QUIT || keyPressed == quit || keyPressed == ESC) {
     cout << "termina jogo" << endl;
   }
 }
 
+/*
+ * Clears the screen and updates the map matrix
+ */
 void Game::clearMap(void) {
   clearScreen();
   resetMap();
 }
 
+/*
+ * Updates the map matrix
+ */
 void Game::resetMap(void) {
   for (int i = 0; i < MAX_LINES; i++) {
         for(int j = 0; j < MAX_COLUMNS; j++)

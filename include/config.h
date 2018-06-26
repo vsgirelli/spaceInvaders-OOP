@@ -26,13 +26,17 @@ using namespace std;
 // pq é difícil capturar o ESC
 #define ESC 27
 #define ENTER '\n'
-#define RIGHT 77
-#define LEFT 75
-#define UP 72
-#define DOWN 80
+#define RIGHT 68  // D
+#define LEFT 65   // A
+#define UP 87     // W
+#define DOWN 83   // S
+#define right 100 // d
+#define left 97   // a
+#define up 119    // w
+#define down 115  // s
 #define SPACE 32
-#define quit 113
-#define QUIT 81
+#define quit 113  // Q
+#define QUIT 81   // q
 
 
 // GAME

@@ -1,5 +1,8 @@
 #include "utils.h"
 
+/*
+ *  
+ */
 int kbhit(void) {
   struct termios oldt, newt;
   int ch;
@@ -27,7 +30,7 @@ int kbhit(void) {
 }
 
 /*
- * Executes until the clock reaches 600 milissenconds
+ * Executes until the clock reaches TODO X milissenconds
  * and then returns the control to mainLoop()
  */
 void waitClock(clock_t endFrameTime) {
