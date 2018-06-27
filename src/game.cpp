@@ -89,6 +89,7 @@ void Game::endGame(int result) {
   switch (result) {
     case DEAD:
       clearScreen();
+      std::cout << "YOU DIED! TRY AGAIN" << '\n';
     break;
 
     case EXIT:
@@ -248,7 +249,7 @@ void Game::updateUserAction(char action) {
 void Game::updateShots() {
   srand (time(NULL));
   int j = 0;
-  bool randomicShot = false; //rand() % 100 < SHOTPROBABILITY;
+  bool randomicShot = rand() % 100 < SHOTPROBABILITY;
 
   // Generates shots randomicaly, with 30% of chance to generate
   // a shot in each iteration.
@@ -269,8 +270,11 @@ void Game::updateShots() {
     }
     else
     {
-
-      checkCollision(projectiles[j]);
+      if (checkCollision(projectiles[j]))
+      {
+        projectiles.erase(projectiles.begin() + j);
+        j--;
+      }
     }
     j++;
   }
@@ -285,7 +289,38 @@ void Game::updatePositions(void) {
   fillMap();
 }
 
-void Game::checkCollision(Shot* shot) {
+bool Game::checkCollision(Shot* shot) {
+  int vecSize;
+  if (shot->isColliding(user)) {
+      user->setDead();
+      return true;
+  }
+
+  if (shot->getDirection() ==  MOVE_UPWARD)
+  {
+    vecSize = enemies.size();
+    for (int i = 0; i < vecSize; i++)
+    {
+      if (shot->isColliding(enemies[i])) {
+        enemies.erase(enemies.begin() + i);
+        if ((int) enemies.size() == 0) {
+          user->setDead();
+        }
+        return true;
+      }
+    }
+  }
+
+  vecSize = barriers.size();
+  for (int i = 0; i < vecSize; i++)
+  {
+    if (shot->isColliding(barriers[i])) {
+      barriers.erase(barriers.begin() + i);
+      return true;
+    }
+  }
+
+  return false;
 
 }
 

@@ -17,4 +17,5 @@ class Shot: public MovingElement
     char getClass(void);
     void move(int direction);
     void move();
+    int getDirection(); //TODO VAL UML
 };
