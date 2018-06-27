@@ -53,4 +53,5 @@ using namespace std;
 #define INITIALSTEPS 10
 #define DEAD 0
 #define EXIT 1
+#define WIN 1
 #define SHOTPROBABILITY 30

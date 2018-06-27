@@ -35,18 +35,10 @@ void UserSpaceship::move(int direction) {
 
   switch(direction) {
     case LEFT:
-      position.second--;
-    break;
-
-    case RIGHT:
-      position.second++;
-    break;
-
-    case UP:
       position.first--;
     break;
 
-    case DOWN:
+    case RIGHT:
       position.first++;
     break;
   }
@@ -57,8 +49,8 @@ void UserSpaceship::move(int direction) {
 // Once UserSpaceship is a concrete class that inherit from abstract classes,
 // UserSpaceship must implement the pure virtual functions declared in the base classes.
 Shot * UserSpaceship::shoot(void) {
-
-  return NULL;
+  pair<int, int> position = getPosition();
+  return new Shot(position.first, position.second-1, MOVE_UPWARD);
 }
 
 bool UserSpaceship::isAlive(void) {

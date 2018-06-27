@@ -30,13 +30,17 @@ Game::~Game() {
   }
   projectiles.erase(projectiles.begin(), projectiles.end());
 
-  // TODO
-  // tudo o que tem acima tem que fazer funcionar na killObject
-  //killObject(projectiles);
-  //killObject(enemies);
-  //killObject(barriers);
-
+  killObject(projectiles);
+  killObject(enemies);
+  killObject(barriers);
   delete(user);
+}
+
+template <typename T> void Game::killObject(vector<T*> vecObj)
+{
+  for (int i = 0; i < (int) vecObj.size(); i++) {
+    delete vecObj[i];
+  }
 }
 
 /*
@@ -100,7 +104,7 @@ void Game::printGame(void) {
 }
 
 void Game::loadPlayer(void) {
-  user = new UserSpaceship(MAX_LINES - 2, MAX_COLUMNS / 2);
+  user = new UserSpaceship(MAX_COLUMNS / 2, MAX_LINES - 2);
 }
 
 /*
@@ -143,7 +147,7 @@ void Game::loadStatusBar(void) {
 int Game::mainLoop(void) {
   char keyPressed = '\0';
   clock_t endFrameTime;
-  bool alive;
+  bool alive = true;
 
   do {
     // while user does not press any key and is still alive
@@ -161,7 +165,7 @@ int Game::mainLoop(void) {
     }
     // if kbhit returns 1, means that the user pressed a key
     keyPressed = getchar();
-    updateUserPosition(keyPressed);
+    updateUserAction(keyPressed);
   } while(keyPressed != ESC);
 
   if (!alive) {
@@ -170,6 +174,7 @@ int Game::mainLoop(void) {
   else if (keyPressed == ESC) {
     return EXIT;
   }
+  return WIN;
 }
 
 /*
@@ -218,29 +223,32 @@ void Game::fillMap(void) {
 
   position = user->getPosition();
   icon = user->getCharIcon();
-  map[position.first][position.second] = icon;
+  map[position.second][position.first] = icon;
 }
 
-void Game::updateUserPosition(char direction) {
-  if (direction == LEFT || direction == left) {
+void Game::updateUserAction(char action) {
+  if (action == LEFT || action == left) {
     user->move(LEFT);
   }
-  else if (direction == RIGHT || direction == right) {
+
+  else if (action == RIGHT || action == right) {
     user->move(RIGHT);
   }
-  else if (direction == UP || direction == up) {
-    user->move(UP);
+
+  else if (action == SPACE )
+  {
+    Shot *wow = user->shoot();
+    projectiles.push_back(wow);
+    std::cout << "wow = "<<  wow->getPosition().first<< " " << wow->getPosition().second << '\n';
   }
-  else if (direction == DOWN || direction == down) {
-    user->move(DOWN);
-  }
+
 }
 
 
 void Game::updateShots() {
   srand (time(NULL));
   int j = 0;
-  bool randomicShot = rand() % 100 < PROBABILITY;
+  bool randomicShot = false; //rand() % 100 < SHOTPROBABILITY;
 
   // Generates shots randomicaly, with 30% of chance to generate
   // a shot in each iteration.
@@ -251,17 +259,18 @@ void Game::updateShots() {
   }
 
   //Mover todos os projetes e testar colisao e que nao passe do chao
-  for (int i = 0; i < (int) projectiles.size(); i++) {
-    projectiles[j]->move(MOVE_DOWNWARD);
-    if (projectiles[j]->getPosition().second > MAX_LINES-2) {
+  int vecSize = (int) projectiles.size();
+  for (int i = 0; i < vecSize; i++) {
+    projectiles[j]->move();
+    if (projectiles[j]->getPosition().second > MAX_LINES-1 || projectiles[j]->getPosition().second < 1 ) {
       delete projectiles[j];
       projectiles.erase(projectiles.begin() + j);
       j--;
     }
     else
     {
-      //TODO
-      //checkCollision()
+
+      checkCollision(projectiles[j]);
     }
     j++;
   }
@@ -274,6 +283,10 @@ void Game::updatePositions(void) {
   updateEnemies();
   updateShots();
   fillMap();
+}
+
+void Game::checkCollision(Shot* shot) {
+
 }
 
 /*

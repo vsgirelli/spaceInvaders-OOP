@@ -36,8 +36,12 @@ void Shot::move(int direction) {
     break;
 
     case MOVE_UPWARD:
-    position.second -= 1;
+    position.second -=1;
     break;
   }
   setPosition(position);
+}
+//TODO VAL UML POLOMOFRMISO
+void Shot::move() {
+  move(direction);
 }
