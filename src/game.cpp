@@ -142,7 +142,7 @@ void Game::loadStatusBar(void) {
 }
 
 /*
- * TODO atualizar descrição da mainLoop
+ * Keeps the game loop  
  */
 int Game::mainLoop(void) {
   char keyPressed = '\0';

@@ -34,11 +34,11 @@ class Game
     void resetMap(void);
     void loadStatusBar(void);
     void fillMap(void);
-    void updateUserAction(char action); //TODO VAL UML
+    void updateUserAction(char action);
     void updatePositions(void);
     void updateEnemies(void);
     void updateShots(void);
-    void checkCollision(Shot* shot); //TODO VAL UML
+    void checkCollision(Shot* shot);
     void endGame(int result);
-    template <typename T> void killObject(vector<T*> vecObj); // TODO VAL UML
+    template <typename T> void killObject(vector<T*> vecObj); 
 };

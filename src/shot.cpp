@@ -41,7 +41,7 @@ void Shot::move(int direction) {
   }
   setPosition(position);
 }
-//TODO VAL UML POLOMOFRMISO
+
 void Shot::move() {
   move(direction);
 }
