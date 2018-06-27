@@ -240,11 +240,12 @@ void Game::updateUserPosition(char direction) {
 void Game::updateShots() {
   srand (time(NULL));
   int j = 0;
+  bool randomicShot = rand() % 100 < PROBABILITY;
 
   // Generates shots randomicaly, with 30% of chance to generate
   // a shot in each iteration.
   // The shots are created for a random enemy.
-  if ((rand() % 100 < SHOTPROBABILITY && (int) enemies.size())) {
+  if ( (randomicShot) && (int) enemies.size() ) {
     int randomEnemy = rand() % (int) enemies.size();
     projectiles.push_back(enemies[randomEnemy]->shoot());
   }
