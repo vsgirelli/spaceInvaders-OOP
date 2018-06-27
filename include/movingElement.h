@@ -1,12 +1,9 @@
 #include "config.h"
 #include "element.h"
 
-#pragma once 
+#pragma once
 
 using namespace std;
-
-// sobre como funciona herança com várias classes abstratas:
-// https://stackoverflow.com/questions/4985993/inheritance-of-abstract-class
 
 // If a class inherit from an abstract class and does not implement
 // one of its pure virtual functions, then the derived class is also

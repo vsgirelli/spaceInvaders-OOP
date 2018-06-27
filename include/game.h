@@ -39,7 +39,5 @@ class Game
     void updateEnemies(void);
     void updateShots(void);
     void endGame(int result);
-    //void checkBulletColisions(void); // percorre o vetor de tiros e checa
-    //template <typename T> void killObject(T *obj); // destrói objeto atingido por um tiro
-    //void loadStatusBar(void);
+    //template <typename T> void killObject(vector<T*> vecObj); // TODO 
 };

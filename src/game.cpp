@@ -30,6 +30,12 @@ Game::~Game() {
   }
   projectiles.erase(projectiles.begin(), projectiles.end());
 
+  // TODO
+  // tudo o que tem acima tem que fazer funcionar na killObject
+  //killObject(projectiles);
+  //killObject(enemies);
+  //killObject(barriers);
+
   delete(user);
 }
 
