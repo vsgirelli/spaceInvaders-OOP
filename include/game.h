@@ -38,7 +38,7 @@ class Game
     void updatePositions(void);
     void updateEnemies(void);
     void updateShots(void);
-    void checkCollision(Shot* shot); //TODO VAL UML
+    bool checkCollision(Shot* shot); //TODO VAL UML
     void endGame(int result);
     template <typename T> void killObject(vector<T*> vecObj); // TODO VAL UML
 };

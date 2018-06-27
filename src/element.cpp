@@ -17,7 +17,10 @@ Element::Element(char def, int posx, int posy) {
 }
 
 bool Element::isColliding(Element *element) {
-return true;
+  if (getPosition().first == element->getPosition().first && getPosition().second == element->getPosition().second) {
+    return true;
+  }
+  return false;
 }
 
 char Element::getCharIcon(void) {
